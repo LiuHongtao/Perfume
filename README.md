@@ -1,6 +1,6 @@
 Perfume
 ===
-A Code Smell detector platform based on machine learning.
+A Code Smell detection platform based on machine learning.
 
 Code Smell
 ===
