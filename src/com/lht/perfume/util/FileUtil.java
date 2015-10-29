@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class FileUtil {
 	
+	private static final String FILES_COUNT = "!!!!! files count: %s";
 	private static final String DIR_NOT_EXIST = "????? directory %s not exist";
 	
 	private static ArrayList<String> filePath;
@@ -13,8 +14,12 @@ public class FileUtil {
 		getAllJavaFilePath(dirName);
 		
 		for (String path: filePath) {
-			System.out.println(path);
+			LogUtil.print(path);
 		}
+		
+		LogUtil.print(
+				String.format(
+						FILES_COUNT, filePath.size()));
 	}
 	
 	public static ArrayList<String> getAllJavaFilePath(String dirName) {
