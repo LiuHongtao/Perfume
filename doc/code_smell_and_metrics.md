@@ -22,7 +22,7 @@
 * FEW:
 * LAA: locality of attribute accesses
 * LCOM: lack of cohesion between methods
-* LOC: lines of code
+* LOC: lines of code ![Progress](http://progressed.io/bar/28) 
 * LOC_CLASS: lines of code in a class
 * LOC_METHOD: lines of code in a method
 * LOCACTUAL: total line of code
