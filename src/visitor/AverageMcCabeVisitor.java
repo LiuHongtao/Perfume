@@ -24,10 +24,10 @@ import org.eclipse.jdt.core.dom.SwitchCase;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
-import analyzer.SumJavaCode;
-import util.FileUtil;
-import util.JdtAstUtil;
-import dto.MethodParam;
+import perfume.metric.analyzer.SumJavaCode;
+import perfume.metric.model.MethodParam;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
 
 public class AverageMcCabeVisitor extends ASTVisitor {
 
@@ -47,8 +47,7 @@ public class AverageMcCabeVisitor extends ASTVisitor {
 			throws Exception {
 		super();
 		this.outMap = outMap;
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 		sjc = new SumJavaCode();
 		output = new ArrayList<List<String>>();
 		for (String path : pathList) {

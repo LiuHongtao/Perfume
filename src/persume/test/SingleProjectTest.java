@@ -1,4 +1,4 @@
-package test;
+package persume.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 
-import util.CompliationUnitUtil;
-import util.XlsOutput;
+import perfume.util.ast.CompliationUnitUtil;
+//import util.XlsOutput;
 import visitor.AverageMcCabeVisitor;
 import visitor.CompilationUnitVisitor;
 import visitor.MRCVisitor;
@@ -45,7 +45,7 @@ private String path ="E:\\waitingTest\\FreeCol";
 			}
 		}
 		if (output.size() != 0) {
-			XlsOutput.generateExcel2003(path.substring(15), output);
+//			XlsOutput.generateExcel2003(path.substring(15), output);
 			output.clear();
 		}
 		long end = System.currentTimeMillis();

@@ -1,10 +1,10 @@
-package util;
+package perfume.util.ast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import perfume.util.FileUtil;
 import visitor.MRCVisitor;
 
 public class CompliationUnitUtil {
@@ -12,8 +12,7 @@ public class CompliationUnitUtil {
 	private CompilationUnit unit;
 	
 	public CompliationUnitUtil(String dirPath) throws Exception{
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 
 		for (String path : pathList) {
 			unitPath = path;

@@ -21,9 +21,9 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SwitchCase;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
-import util.FileUtil;
-import util.JdtAstUtil;
-import dto.MethodParam;
+import perfume.metric.model.MethodParam;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
 
 public class McCabeVisitor extends ASTVisitor {
 
@@ -38,8 +38,7 @@ public class McCabeVisitor extends ASTVisitor {
 	public McCabeVisitor(String dirPath) throws Exception {
 		super();
 
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 
 		for (String path : pathList) {
 //			System.out.println(path);

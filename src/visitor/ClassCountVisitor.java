@@ -12,11 +12,12 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.eclipse.jdt.core.dom.PackageDeclaration;
 
-import analyzer.LineOfCode;
-import util.FileUtil;
-import util.JdtAstUtil;
+import perfume.metric.analyzer.LineOfCode;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
+
+import org.eclipse.jdt.core.dom.PackageDeclaration;
 
 public class ClassCountVisitor extends ASTVisitor {
 
@@ -24,7 +25,6 @@ public class ClassCountVisitor extends ASTVisitor {
 	private String packageName = "";
 	private String className = "";
 	private CompilationUnit unit;
-	private FileUtil util;
 
 	private long totalParamCount = 0;
 	private int fileCount = 0;
@@ -43,8 +43,7 @@ public class ClassCountVisitor extends ASTVisitor {
 	public ClassCountVisitor(String dirPath) throws Exception {
 		super();
 
-		util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 		for (String path : pathList) {
 			unitPath = path;
 			unit = JdtAstUtil.getCompilationUnit(unitPath);

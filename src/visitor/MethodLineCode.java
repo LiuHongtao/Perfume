@@ -6,10 +6,10 @@ import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 
-import dto.MethodParam;
-import analyzer.SumJavaCode;
-import util.FileUtil;
-import util.JdtAstUtil;
+import perfume.metric.analyzer.SumJavaCode;
+import perfume.metric.model.MethodParam;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
 
 public class MethodLineCode extends ASTVisitor {
 	private String unitPath;
@@ -20,8 +20,7 @@ public class MethodLineCode extends ASTVisitor {
 	public MethodLineCode(String dirPath) throws Exception {
 		super();
 
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 		sjc = new SumJavaCode();
 		for (String path : pathList) {
 			unitPath = path;

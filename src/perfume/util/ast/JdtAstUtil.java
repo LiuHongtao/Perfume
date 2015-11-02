@@ -1,4 +1,4 @@
-package util;
+package perfume.util.ast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

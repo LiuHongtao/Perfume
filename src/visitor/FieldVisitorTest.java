@@ -11,9 +11,9 @@ import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
-import util.FileUtil;
-import util.JdtAstUtil;
-import analyzer.SumJavaCode;
+import perfume.metric.analyzer.SumJavaCode;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
 
 public class FieldVisitorTest extends ASTVisitor{
 	private int LineOfImports= 0;
@@ -24,8 +24,7 @@ public class FieldVisitorTest extends ASTVisitor{
 	public FieldVisitorTest(String dirPath) throws Exception{
 		super();
 
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 		System.out.println(dirPath);
 		SumJavaCode lc = new SumJavaCode();
 		for (String path : pathList) {

@@ -10,9 +10,9 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import dto.MethodParam;
-import util.FileUtil;
-import util.JdtAstUtil;
+import perfume.metric.model.MethodParam;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
 
 public class MethodParameterCounter extends ASTVisitor {
 
@@ -50,8 +50,7 @@ public class MethodParameterCounter extends ASTVisitor {
 	public MethodParameterCounter(String dirPath) throws Exception {
 		super();
 
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 
 		for (String path : pathList) {
 			unitPath = path;

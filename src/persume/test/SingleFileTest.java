@@ -1,6 +1,6 @@
-package test;
+package persume.test;
 
-import util.CompliationUnitUtil;
+import perfume.util.ast.CompliationUnitUtil;
 import visitor.FieldVisitorTest;
 import visitor.McCabeVisitor;
 import visitor.MethodLineCode;

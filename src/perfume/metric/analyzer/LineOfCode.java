@@ -1,4 +1,4 @@
-package analyzer;
+package perfume.metric.analyzer;
 
 import java.io.BufferedReader;
 import java.io.File;

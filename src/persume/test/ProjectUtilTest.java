@@ -1,4 +1,4 @@
-package test;
+package persume.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.Set;
 import org.apache.poi.util.SystemOutLogger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 
-import util.ProjectUtil;
-import util.XlsOutput;
+import perfume.util.ast.ProjectUtil;
+//import util.XlsOutput;
 import visitor.*;
 
 public class ProjectUtilTest {
@@ -52,14 +52,14 @@ public class ProjectUtilTest {
 				e.printStackTrace();
 			}
 			 if (select && (output.size() != 0)) {
-			 XlsOutput.generateExcel2003(path.substring(15), output);
+//			 XlsOutput.generateExcel2003(path.substring(15), output);
 			 output.clear();
 			 }
 		}
 		System.out.println("total :" + output.size());
 
 		if (!select&&output.size() != 0) {
-			XlsOutput.generateExcel2003("result", output);
+//			XlsOutput.generateExcel2003("result", output);
 			output.clear();
 		}
 		Set set = outMap.keySet();

@@ -4,9 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import analyzer.LineOfCode;
-import analyzer.SumJavaCode;
-
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
@@ -25,11 +22,12 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
-import dto.MethodParam;
-import util.FileUtil;
-import util.JdtAstUtil;
-import util.JdtAstUtilP;
-import util.XlsOutput;
+import perfume.metric.analyzer.LineOfCode;
+import perfume.metric.analyzer.SumJavaCode;
+import perfume.metric.model.MethodParam;
+import perfume.util.FileUtil;
+import perfume.util.ast.JdtAstUtil;
+import perfume.util.ast.JdtAstUtilP;
 
 public class CompilationUnitVisitor extends ASTVisitor {
 	private boolean isInterface = false, visited = false;
@@ -56,8 +54,7 @@ public class CompilationUnitVisitor extends ASTVisitor {
 		projectName= dirPath.substring(8);
 		output = new ArrayList<List<String>>();
 		
-		FileUtil util = new FileUtil();
-		ArrayList<String> pathList = util.getAllJavaFilePath(dirPath);
+		ArrayList<String> pathList = FileUtil.getAllJavaFilePath(dirPath);
 		// System.out.println(dirPath);
 		sjc = new SumJavaCode();
 		for (String path : pathList) {
@@ -137,7 +134,7 @@ public class CompilationUnitVisitor extends ASTVisitor {
 		 * 显示类个数
 		 */
 		// System.out.println(classCount+"\t"+normerClassCount+"\t"+interfaceCount);
-		XlsOutput.generateExcel2003(projectName, output);
+//		XlsOutput.generateExcel2003(projectName, output);
 	}
 
 	public boolean visit(TypeDeclaration node) {

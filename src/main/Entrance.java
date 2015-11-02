@@ -2,10 +2,10 @@ package main;
 
 import org.eclipse.jdt.core.compiler.InvalidInputException;
 
-import analyzer.LineOfCode;
-import test.SingleFileTest;
-import test.SingleProjectTest;
-import test.ProjectUtilTest;
+import perfume.metric.analyzer.LineOfCode;
+import persume.test.ProjectUtilTest;
+import persume.test.SingleFileTest;
+import persume.test.SingleProjectTest;
 
 public class Entrance {
 
