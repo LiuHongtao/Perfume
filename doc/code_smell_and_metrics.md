@@ -10,9 +10,9 @@
 
 ## Metrics Names
 
-| NO | Metric Label | Metric Name | Explanation | Progress |
+| NO | Metric Label | Metric Name | Description | Progress |
 |:-----|:-----|:-----|:------|:-----|
-| 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | [progress](http://progressed.io/bar/5?title=lht) |
+| 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | ![progress](http://progressed.io/bar/5?title=lht) |
 | 002 | CBO | Coupling Between Objects |  |  |
 | 003 | CYCLO | McCabe’s CYCLOmatic complexity |  |  |
 | 004 | DDP |  |  |  |
