@@ -10,31 +10,33 @@
 
 ## Metrics Names
 
-* ATFD: Access To Foreign Data
-* CBO: Coupling Between Objects
-* CYCLO: McCabe’s CYCLOmatic complexity
-* DDP: ?
-* FDP: Foreign Data Providers
-* FEW: ?
-* LAA: Locality of Attribute Accesses
-* LCOM: Lack Of Cohesion between Methods
-* LOC: Lines Of Code ![progress](http://progressed.io/bar/28?title=lht) 
-* LOC_CLASS: Lines Of Code in a class
-* LOC_METHOD: Lines Of Code in a method
-* LOCACTUAL: total Lines Of Code
-* LOCPROB: number of Lines Of Code for data fields, methods, imported packages, and package declaration
-* MAXNESTING: MAXimum NESTING level
-* NACC: Number of ACCessors (getter/setter)
-* NAD: Number of Attributes in a class?
-* NOA: Number Of Attributes
-* NOAM: Number Of Accessor Methods
-* NOAV: Number Of Accessd Variables
-* NOM: Number Of Methods
-* NOP: Number Of Properties?
-* NOP*: Number Of Parameters
-* NOPA: Number Of Public Attributes
-* NOV: Number Of Variables per class
-* PAR: total number of PARameters in the selected scope
-* TCC: Tight Class Cohesion
-* WMC: Weighted Methods per Class
-* WOC: Weight Of a Class
+| NO | Metric Label | Metric Name | Explanation | Progress |
+|:-----|:-----|:-----|:------|:-----|
+| 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | [progress](http://progressed.io/bar/5?title=lht) |
+| 002 | CBO | Coupling Between Objects |  |  |
+| 003 | CYCLO | McCabe’s CYCLOmatic complexity |  |  |
+| 004 | DDP |  |  |  |
+| 005 | FDP | Foreign Data Providers |  |  |
+| 006 | FEW |  |  |  |
+| 007 | LAA | Locality of Attribute Accesses |  |  |
+| 008 | LCOM | Lack Of Cohesion between Methods |  |  |
+| 009 | LOC | Lines Of Code |  |  |
+| 010 | LOC_CLASS | Lines Of Code in a class |  |  |
+| 011 | LOC_METHOD | Lines Of Code in a method |  |  |
+| 012 | LOCACTUAL | total Lines Of Code |  |  |
+| 013 | LOCPROB |  | number of Lines Of Code for data fields, methods, imported packages, and package declaration |  |
+| 014 | MAXNESTING | MAXimum NESTING level |  |  |
+| 015 | NACC | Number of ACCessors (getter/setter) |  |  |
+| 016 | NAD | Number of Attributes in a class? |  |  |
+| 017 | NOA | Number Of Attributes |  |  |
+| 018 | NOAM | Number Of Accessor Methods |  |  |
+| 019 | NOAV | Number Of Accessd Variables |  |  |
+| 020 | NOM | Number Of Methods |  |  |
+| 021 | NOP | Number Of Properties? |  |  |
+| 022 | NOP* | Number Of Parameters |  |  |
+| 023 | NOPA | Number Of Public Attributes |  |  |
+| 024 | NOV | Number Of Variables per class |  |  |
+| 025 | PAR | total number of PARameters in the selected scope |  |  |
+| 026 | TCC | Tight Class Cohesion |  |  |
+| 027 | WMC | Weighted Methods per Class |  |  |
+| 028 | WOC | Weight Of a Class |  |  |
