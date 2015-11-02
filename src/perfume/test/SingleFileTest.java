@@ -1,4 +1,4 @@
-package persume.test;
+package perfume.test;
 
 import perfume.util.ast.CompliationUnitUtil;
 import visitor.FieldVisitorTest;
