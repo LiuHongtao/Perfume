@@ -2,7 +2,7 @@ package perfume.test.metric;
 
 import perfume.metric.AbstractMeasurement;
 import perfume.metric.MetricUtil;
-import perfume.metric.visitor.NOPA.NOPAMetricVisitor;
+import perfume.metric.visitor.NOPAMetricVisitor;
 
 public class NOPATest {
 	

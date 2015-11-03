@@ -1,4 +1,4 @@
-package perfume.metric.visitor.NOPA;
+package perfume.metric.visitor;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.metric.visitor.AbstractMetricVisitor;
 import perfume.util.LogUtil;
 import perfume.util.ast.InstanceOfUtil;
 
@@ -17,7 +16,7 @@ import perfume.util.ast.InstanceOfUtil;
  * <li>Description: The Number of Public Attributes, which are not static and constant, 
  * of a class. Don't measured for Abstract classes, and inner classes?</li>
  * <li>Granularity: Class</li>
- * <li>Default Values: -1 for Abstract, -2 for Interface
+ * <li>Default Values: -1 for Abstract, -2 for Interface</li>
  * </ul>
  */
 public class NOPAMetricVisitor extends AbstractMetricVisitor {

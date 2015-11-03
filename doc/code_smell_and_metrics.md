@@ -31,10 +31,10 @@
 | 017 | NOA | Number Of Attributes |  |  |
 | 018 | NOAM | Number Of Accessor Methods |  |  |
 | 019 | NOAV | Number Of Accessd Variables |  |  |
-| 020 | NOM | Number Of Methods |  |  |
+| 020 | NOM | Number Of Methods | Don't measured for Abstract classes, Interface, and inner classes? | ![progress](http://progressed.io/bar/100?title=lht) |
 | 021 | NOP | Number Of Properties? |  |  |
 | 022 | NOP* | Number Of Parameters |  |  |
-| 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. Don't measured for Abstract classes. | ![progress](http://progressed.io/bar/100?title=lht) |
+| 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. Don't measured for Abstract classes, Interface, and inner classes?. | ![progress](http://progressed.io/bar/100?title=lht) |
 | 024 | NOV | Number Of Variables per class |  |  |
 | 025 | PAR | total number of PARameters in the selected scope |  |  |
 | 026 | TCC | Tight Class Cohesion | the relative number of method pairs of a class that access in common at least one attribute of the measured class |  |
