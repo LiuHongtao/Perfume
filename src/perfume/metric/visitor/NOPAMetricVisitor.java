@@ -16,7 +16,7 @@ import perfume.util.ast.InstanceOfUtil;
  * <li>Description: The Number of Public Attributes, which are not static and constant, 
  * of a class. Don't measured for Abstract classes, and inner classes?</li>
  * <li>Granularity: Class</li>
- * <li>Default Values: -1 for Abstract, -2 for Interface</li>
+ * <li>Default Values: -1 for Interface</li>
  * </ul>
  */
 public class NOPAMetricVisitor extends AbstractMetricVisitor {
@@ -30,22 +30,14 @@ public class NOPAMetricVisitor extends AbstractMetricVisitor {
 		return false;
 	}
 	
-	private void countNOPA(TypeDeclaration node) {
-		List<ASTNode> modifiers = node.modifiers();
-		for (ASTNode modifier: modifiers) {
-			if (InstanceOfUtil.isModifier(modifier) && ((Modifier)modifier).isAbstract()) {
-				NOPA = -1;
-				return;
-			}
-		}
-		
+	private void countNOPA(TypeDeclaration node) {		
 		if (node.isInterface()) {
-			NOPA = -2;
+			NOPA = -1;
 			return;
 		}
 		
 		for (FieldDeclaration field: node.getFields()) {
-			modifiers = field.modifiers();
+			List<ASTNode> modifiers = field.modifiers();
 			boolean flag = false;
 			for (ASTNode modifier: modifiers) {
 				if (InstanceOfUtil.isModifier(modifier)) {

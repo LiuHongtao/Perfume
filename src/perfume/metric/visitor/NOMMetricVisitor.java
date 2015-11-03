@@ -3,6 +3,7 @@ package perfume.metric.visitor;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
@@ -29,20 +30,21 @@ public class NOMMetricVisitor extends AbstractMetricVisitor {
 	}
 	
 	private void countNOM(TypeDeclaration node) {
-		List<ASTNode> modifiers = node.modifiers();
-		for (ASTNode modifier: modifiers) {
-			if (InstanceOfUtil.isModifier(modifier) && ((Modifier)modifier).isAbstract()) {
-				NOM = -1;
-				return;
-			}
-		}
-		
 		if (node.isInterface()) {
 			NOM = -2;
 			return;
 		}
 		
 		NOM = node.getMethods().length;
+		
+		for (MethodDeclaration method: node.getMethods()) {
+			List<ASTNode> modifiers = method.modifiers();
+			for (ASTNode modifier: modifiers) {
+				if (InstanceOfUtil.isModifier(modifier) && ((Modifier)modifier).isAbstract()) {
+					NOM--;
+				}
+			}
+		}		
 	}
 	
 	@Override
