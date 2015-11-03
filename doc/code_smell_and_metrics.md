@@ -16,9 +16,9 @@
 | 002 | CBO | Coupling Between Objects |  |  |
 | 003 | CYCLO | McCabe’s CYCLOmatic complexity |  |  |
 | 004 | DDP |  |  |  |
-| 005 | FDP | Foreign Data Providers |  |  |
+| 005 | FDP | Foreign Data Providers | The number of distinct classes in which the attributes accessed in cf. with the ATFD metric are defined |  |
 | 006 | FEW |  |  |  |
-| 007 | LAA | Locality of Attribute Accesses |  |  |
+| 007 | LAA | Locality of Attribute Accesses | The number of attributes from the method’s definition class, divided by the total number of variables accessed (including attributes used via accessor methods, see ATFD metric) |  |
 | 008 | LCOM | Lack Of Cohesion between Methods |  |  |
 | 009 | LOC | Lines Of Code |  |  |
 | 010 | LOC_CLASS | Lines Of Code in a class |  |  |
@@ -34,9 +34,9 @@
 | 020 | NOM | Number Of Methods |  |  |
 | 021 | NOP | Number Of Properties? |  |  |
 | 022 | NOP* | Number Of Parameters |  |  |
-| 023 | NOPA | Number Of Public Attributes |  |  |
+| 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. Don't measured for Abstract classes. | ![progress](http://progressed.io/bar/100?title=lht) |
 | 024 | NOV | Number Of Variables per class |  |  |
 | 025 | PAR | total number of PARameters in the selected scope |  |  |
-| 026 | TCC | Tight Class Cohesion |  |  |
-| 027 | WMC | Weighted Methods per Class |  |  |
-| 028 | WOC | Weight Of a Class |  |  |
+| 026 | TCC | Tight Class Cohesion | the relative number of method pairs of a class that access in common at least one attribute of the measured class |  |
+| 027 | WMC | Weighted Methods per Class |  the sum of the statical complexity of all methods in a class. The CYCLO metric is used to quantify the method’s complexity |  |
+| 028 | WOC | Weight Of a Class | The number of ”functional” public methods, divided by the total number of public members |  |

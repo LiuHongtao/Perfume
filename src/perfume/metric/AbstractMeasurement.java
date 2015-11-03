@@ -12,4 +12,7 @@ public abstract class AbstractMeasurement extends ASTVisitor {
 	 * After the measurement finished
 	 */
 	public abstract void afterMeasurement();
+	
+	public abstract long getMetricResult();
+	
 }

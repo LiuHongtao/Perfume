@@ -1,8 +1,9 @@
-package perfume.metric.visitor;
+package perfume.metric.visitor.AFTD;
 
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import perfume.metric.visitor.AbstractMetricVisitor;
 import perfume.util.LogUtil;
 
 /**
@@ -37,4 +38,10 @@ public class ATFDMetricVisitor extends AbstractMetricVisitor {
 	public void afterMeasurement() {
 		LogUtil.print(ATFD);
 	}
+
+	@Override
+	public long getMetricResult() {
+		return ATFD;
+	}
+	
 }

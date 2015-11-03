@@ -6,7 +6,7 @@ public class LogUtil {
 		System.out.println(msg);
 	}
 	
-	public static void print(double msg) {
+	public static void print(long msg) {
 		System.out.println(msg);
 	}
 }
