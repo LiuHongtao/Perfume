@@ -1,5 +1,6 @@
 package perfume.metric.visitor.AFTD;
 
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
@@ -30,7 +31,7 @@ public class ATFDMetricVisitor extends AbstractMetricVisitor {
 	}
 
 	@Override
-	public void beforeMeasurement() {
+	public void beforeMeasurement(String javaPath,CompilationUnit compUnit) {
 		ATFD = 0;		
 	}
 

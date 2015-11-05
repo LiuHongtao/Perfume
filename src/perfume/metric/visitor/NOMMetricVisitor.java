@@ -3,6 +3,7 @@ package perfume.metric.visitor;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -48,7 +49,7 @@ public class NOMMetricVisitor extends AbstractMetricVisitor {
 	}
 	
 	@Override
-	public void beforeMeasurement() {
+	public void beforeMeasurement(String javaPath,CompilationUnit compUnit) {
 		NOM = 0;
 	}
 

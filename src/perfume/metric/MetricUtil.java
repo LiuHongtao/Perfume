@@ -22,8 +22,8 @@ public class MetricUtil {
 		for (String path: filePath) {
 			try {
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
-				for (AbstractMeasurement measurement: measurements) {
-					measurement.beforeMeasurement();
+				for (AbstractMeasurement measurement: measurements) {					
+					measurement.beforeMeasurement(path,compUnit);
 					//TODO
 //					LogUtil.print(compUnit.getPackage().getName().toString());
 					compUnit.accept(measurement);
@@ -34,4 +34,6 @@ public class MetricUtil {
 			}
 		}
 	}
+	
+	
 }

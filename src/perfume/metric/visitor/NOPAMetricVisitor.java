@@ -3,6 +3,7 @@ package perfume.metric.visitor;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -56,7 +57,7 @@ public class NOPAMetricVisitor extends AbstractMetricVisitor {
 	}
 	
 	@Override
-	public void beforeMeasurement() {
+	public void beforeMeasurement(String javaPath,CompilationUnit compUnit) {
 		NOPA = 0;
 	}
 
