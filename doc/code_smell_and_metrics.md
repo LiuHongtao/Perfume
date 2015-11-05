@@ -22,7 +22,7 @@
 | 008 | LCOM | Lack Of Cohesion between Methods |  |  |
 | 009 | LOC | Lines Of Code |  |  |
 | 010 | LOC_CLASS | Lines Of Code in a class |  |![progress](http://progressed.io/bar/100?title=neo)   |
-| 011 | LOC_METHOD | Lines Of Code in a method |  |  |
+| 011 | LOC_METHOD | Lines Of Code in a method |  | ![progress](http://progressed.io/bar/100?title=neo) |
 | 012 | LOCACTUAL | total Lines Of Code |  |  |
 | 013 | LOCPROB |  | number of Lines Of Code for data fields, methods, imported packages, and package declaration |  |
 | 014 | MAXNESTING | MAXimum NESTING level |  |  |
