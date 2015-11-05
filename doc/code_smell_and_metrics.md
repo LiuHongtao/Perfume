@@ -21,7 +21,7 @@
 | 007 | LAA | Locality of Attribute Accesses | The number of attributes from the method’s definition class, divided by the total number of variables accessed (including attributes used via accessor methods, see ATFD metric) |  |
 | 008 | LCOM | Lack Of Cohesion between Methods |  |  |
 | 009 | LOC | Lines Of Code |  |  |
-| 010 | LOC_CLASS | Lines Of Code in a class |  |  |
+| 010 | LOC_CLASS | Lines Of Code in a class |  |![progress](http://progressed.io/bar/100?title=neo)   |
 | 011 | LOC_METHOD | Lines Of Code in a method |  |  |
 | 012 | LOCACTUAL | total Lines Of Code |  |  |
 | 013 | LOCPROB |  | number of Lines Of Code for data fields, methods, imported packages, and package declaration |  |
