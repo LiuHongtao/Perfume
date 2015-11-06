@@ -14,7 +14,7 @@
 |:-----|:-----|:-----|:------|:-----|
 | 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | ![progress](http://progressed.io/bar/5?title=lht) |
 | 002 | CBO | Coupling Between Objects |  |  |
-| 003 | CYCLO | McCabe’s CYCLOmatic complexity |  | ![progress](http://progressed.io/bar/100?title=neo |
+| 003 | CYCLO | McCabe’s CYCLOmatic complexity |  | ![progress](http://progressed.io/bar/100?title=neo) |
 | 004 | DDP |  |  |  |
 | 005 | FDP | Foreign Data Providers | The number of distinct classes in which the attributes accessed in cf. with the ATFD metric are defined |  |
 | 006 | FEW |  |  |  |
