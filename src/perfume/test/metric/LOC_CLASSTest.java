@@ -10,7 +10,7 @@ public class LOC_CLASSTest {
 	AbstractMeasurement measurement = new LOC_CLASSMetricVisitor();
 
 	MetricUtil.startMetric(
-			"D:/Qualitas Corpus/001-apache-ant-1.9.6-src/", 
+			"e:/Qualitas Corpus/001-apache-ant-1.9.6-src/", 
 			measurement);
 
 }
