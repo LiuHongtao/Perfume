@@ -14,16 +14,16 @@
 |:-----|:-----|:-----|:------|:-----|
 | 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | ![progress](http://progressed.io/bar/5?title=lht) |
 | 002 | CBO | Coupling Between Objects |  |  |
-| 003 | CYCLO | McCabe’s CYCLOmatic complexity |  |  |
+| 003 | CYCLO | McCabe’s CYCLOmatic complexity |  | ![progress](http://progressed.io/bar/100?title=neo |
 | 004 | DDP |  |  |  |
 | 005 | FDP | Foreign Data Providers | The number of distinct classes in which the attributes accessed in cf. with the ATFD metric are defined |  |
 | 006 | FEW |  |  |  |
 | 007 | LAA | Locality of Attribute Accesses | The number of attributes from the method’s definition class, divided by the total number of variables accessed (including attributes used via accessor methods, see ATFD metric) |  |
 | 008 | LCOM | Lack Of Cohesion between Methods |  |  |
-| 009 | LOC | Lines Of Code |  |  |
+| 009 | LOC | Lines Of Code |  | ![progress](http://progressed.io/bar/100?title=neo)  |
 | 010 | LOC_CLASS | Lines Of Code in a class |  |![progress](http://progressed.io/bar/100?title=neo)   |
 | 011 | LOC_METHOD | Lines Of Code in a method |  | ![progress](http://progressed.io/bar/100?title=neo) |
-| 012 | LOCACTUAL | total Lines Of Code |  |  |
+| 012 | LOCACTUAL | total Lines Of Code |  | ![progress](http://progressed.io/bar/100?title=neo)  |
 | 013 | LOCPROB |  | number of Lines Of Code for data fields, methods, imported packages, and package declaration |  |
 | 014 | MAXNESTING | MAXimum NESTING level |  |  |
 | 015 | NACC | Number of ACCessors (getter/setter) |  |  |
