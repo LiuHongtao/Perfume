@@ -136,7 +136,7 @@ public class CYCLOMetricVisitor extends AbstractMetricVisitor {
 			param.setEndLineNum(compUnit.getLineNumber(node.getStartPosition()
 					+ node.getLength()));
 
-			// return super.visit(node);
+			
 			return true;
 		}
 
