@@ -6,13 +6,13 @@ import perfume.metric.visitor.NOPAMetricVisitor;
 
 public class NOPATest {
 	
-	public NOPATest() {
+	public NOPATest(String projectPath) {
 		AbstractMeasurement measurement = new NOPAMetricVisitor();
 //		MetricUtil.startMetric(
 //				"D:/Qualitas Corpus/112-xmojosrc_5.0.0", 
 //				measurement);
 		MetricUtil.startMetric(
-				"D:/Qualitas Corpus/001-apache-ant-1.9.6-src/", 
+				 projectPath, 
 				measurement);
 //		MetricUtil.startMetric(
 //				"C:/Users/lht/Desktop/usecase", 

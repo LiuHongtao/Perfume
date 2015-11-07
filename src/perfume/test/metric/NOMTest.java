@@ -6,10 +6,10 @@ import perfume.metric.visitor.NOMMetricVisitor;
 
 public class NOMTest {
 
-	public NOMTest() {
+	public NOMTest(String projectPath) {
 		AbstractMeasurement measurement = new NOMMetricVisitor();
 		MetricUtil.startMetric(
-				"D:/Qualitas Corpus/112-xmojosrc_5.0.0", 
+				  projectPath, 
 				measurement);
 	}	
 }

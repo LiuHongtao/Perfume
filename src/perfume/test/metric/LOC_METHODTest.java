@@ -5,11 +5,11 @@ import perfume.metric.MetricUtil;
 import perfume.metric.visitor.*;
 
 public class LOC_METHODTest {
-public LOC_METHODTest(){
+public LOC_METHODTest(String projectPath){
 	AbstractMeasurement measurement = new LOC_METHODMetricVisitor();
 
 	MetricUtil.startMetric(
-			"D:/Qualitas Corpus/001-apache-ant-1.9.6-src/", 
+			 projectPath, 
 			measurement);
 }
 }

@@ -6,10 +6,10 @@ import perfume.metric.visitor.AFTD.ATFDMetricVisitor;
 
 public class ATFDTest {
 
-	public ATFDTest() {
+	public ATFDTest(String projectPath) {
 		AbstractMeasurement measurement = new ATFDMetricVisitor();
 		MetricUtil.startMetric(
-				"D:/Qualitas Corpus/112-xmojosrc_5.0.0", 
+				projectPath, 
 				measurement);
 	}	
 }
