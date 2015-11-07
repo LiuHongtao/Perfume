@@ -15,7 +15,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 	private CompilationUnit compUnit;
 	private ArrayList<List<String>> output = new ArrayList<List<String>>();
 	int noCommentCodeLine, commentLines, totalLines;
-	private SumJavaCode sjc;
+	//private SumJavaCode sjc;
 
 	private String packageName, className,methodName;
 	private String fullClassName;
@@ -46,7 +46,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 			int length = node.getLength() - 1;
 			endLine = compUnit.getLineNumber(node.getStartPosition() + length);
 
-			int[] result = sjc.LineOfCode(JdtAstUtil.getFile(unitPath), startLine, endLine);
+			int[] result = SumJavaCode.LineOfCode(JdtAstUtil.getFile(unitPath), startLine, endLine);
 			noCommentCodeLine = result[0];
 			commentLines = result[1];
 			blankLines = result[2];
@@ -69,7 +69,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 		blankLines = 0;
 		totalLines = 0;
 		unitPath = javaPath;
-		sjc = new SumJavaCode();
+		 
 		this.compUnit = compUnit;
 	}
 

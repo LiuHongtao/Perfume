@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SumJavaCode {
 
-	public int[] CaculateLine(String line) {
+	public static int[] CaculateLine(String line) {
 		int[] result = new int[3];
 		boolean comment = false;
 		if (line.matches("^[//s&&[^//n]]*$")) {
@@ -55,7 +55,7 @@ public class SumJavaCode {
 		return result;
 	}
 
-	public int[] LineOfCode(File file) {
+	public static int[] LineOfCode(File file) {
 		BufferedReader br = null;
 
 		boolean comment = false;
@@ -144,7 +144,7 @@ public class SumJavaCode {
 
 	}
 
-	public int[] LineOfCode(File file, int startLine, int endLine) {
+	public static  int[] LineOfCode(File file, int startLine, int endLine) {
 		BufferedReader br = null;
 
 		boolean comment = false;
