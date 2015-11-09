@@ -16,6 +16,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.util.ast.InstanceOfUtil;
+import perfume.util.ast.MethodUtil;
 
 /**
  * <ul>
@@ -35,19 +36,6 @@ public class NOAMMetric extends AbstractMetricVisitor {
 		HashSet<String> fieldsTypeSet = new HashSet<>();
 		HashSet<String> fieldsNameSet = new HashSet<>();
 		for (FieldDeclaration field: node.getFields()) {
-			//TODO
-			// if all field count?
-//			List<ASTNode> modifiers = field.modifiers();
-//			boolean flag = true;
-//			for (ASTNode modifier: modifiers) {
-//				if (InstanceOfUtil.isModifier(modifier)) {
-//					if (((Modifier)modifier).isStatic() ||
-//							((Modifier)modifier).isFinal()) {
-//						flag = false;
-//						break;
-//					}
-//				}
-//			}
 			String fieldsType = field.getType().toString();
 			for (VariableDeclarationFragment variable: 
 				(List<VariableDeclarationFragment>)field.fragments()) {
@@ -68,11 +56,15 @@ public class NOAMMetric extends AbstractMetricVisitor {
 			MethodDeclaration[] methods) {
 		long result = 0;		
 		for (MethodDeclaration method: methods) {
-			if (method.isConstructor()) {
+			if (method.isConstructor() || 
+					MethodUtil.isAbstract(method)) {
 				continue;
 			}
 			
-			Type returnType = method.getReturnType2();
+			Type returnType = method.getReturnType2();			
+			if (returnType == null) {
+				continue;
+			}	
 			
 			// what method returns void is not an accessor
 			if (InstanceOfUtil.isPrimitiveType(returnType)) {
@@ -80,7 +72,7 @@ public class NOAMMetric extends AbstractMetricVisitor {
 				if (type.getPrimitiveTypeCode() == PrimitiveType.VOID) {
 					continue;
 				}
-			}
+			}		
 			
 			if (fieldsTypeSet.contains(returnType.toString())) {
 				List<Statement> statements = method.getBody().statements();
@@ -91,7 +83,8 @@ public class NOAMMetric extends AbstractMetricVisitor {
 					// return this.[Field]
 					if (InstanceOfUtil.isFieldAccess(returnExp)) {
 						FieldAccess fieldAccess = (FieldAccess)returnExp;
-						if (InstanceOfUtil.isThisExpression(fieldAccess.getExpression())) {
+						if (InstanceOfUtil.isThisExpression(
+								fieldAccess.getExpression())) {
 							result++;
 						}
 					}

@@ -1,14 +1,11 @@
 package perfume.metric;
 
 import java.util.HashMap;
-import java.util.List;
 
-import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.util.ast.InstanceOfUtil;
+import perfume.util.ast.MethodUtil;
 
 /**
  * <ul>
@@ -40,12 +37,8 @@ public class NOMMetric extends AbstractMetricVisitor {
 		result = node.getMethods().length;
 		
 		for (MethodDeclaration method: node.getMethods()) {
-			List<ASTNode> modifiers = method.modifiers();
-			for (ASTNode modifier: modifiers) {
-				if (InstanceOfUtil.isModifier(modifier) && 
-						((Modifier)modifier).isAbstract()) {
-					result--;
-				}
+			if (MethodUtil.isAbstract(method)) {
+				result--;
 			}
 		}
 		
