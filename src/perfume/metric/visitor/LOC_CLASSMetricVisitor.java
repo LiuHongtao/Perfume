@@ -19,12 +19,12 @@ import perfume.util.ast.JdtAstUtil;
 
 /**
  * <ul>
- * <li>Name: NOPA, Number Of Public Attribute</li>
- * <li>Description: The Number of Public Attributes, which are not static and
- * constant, of a class. Don't measured for Abstract classes, and inner classes?
+ * <li>Name: LOC_CLASS, Lines Of Code in a class</li>
+ * <li>Description: The line of code in a single class node,
+ * not contains imports lines and package deceleration lines.
  * </li>
  * <li>Granularity: Class</li>
- * <li>Default Values: -1 for Interface</li>
+ * <li>Default Values: Number of Code Lines</li>
  * </ul>
  */
 public class LOC_CLASSMetricVisitor extends AbstractMetricVisitor {
@@ -34,7 +34,6 @@ public class LOC_CLASSMetricVisitor extends AbstractMetricVisitor {
 	private ArrayList<List<String>> output = new ArrayList<List<String>>();
 	int noCommentCodeLine, commentLines, totalLines;
 	private SumJavaCode sjc;
-
 	private String packageName, className;
 	private String fullClassName;
 	private int blankLines;

@@ -17,8 +17,6 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 	private CompilationUnit compUnit;
 	private ArrayList<List<String>> output = new ArrayList<List<String>>();
 	int noCommentCodeLine, commentLines, totalLines;
-	//private SumJavaCode sjc;
-
 	private String packageName, className,methodName;
 	private String fullClassName;
 	private int blankLines;
@@ -40,6 +38,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 				packageName = compUnit.getPackage().getName().getFullyQualifiedName();
 			}
 			
+	
 			
 			methodName = node.getName().getIdentifier();
 			fullClassName = packageName + "." + className+"."+methodName;
