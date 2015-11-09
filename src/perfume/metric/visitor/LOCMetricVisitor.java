@@ -1,5 +1,7 @@
 package perfume.metric.visitor;
 
+import java.util.HashMap;
+
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import perfume.metric.analyzer.SumJavaCode;
@@ -32,9 +34,8 @@ public class LOCMetricVisitor extends AbstractMetricVisitor{
 	}
 
 	@Override
-	public long getMetricResult() {
+	public HashMap<String, Long> getMetricResult() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
-
 }

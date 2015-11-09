@@ -1,5 +1,7 @@
 package perfume.metric.visitor.AFTD;
 
+import java.util.HashMap;
+
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -37,12 +39,12 @@ public class ATFDMetricVisitor extends AbstractMetricVisitor {
 
 	@Override
 	public void afterMeasurement() {
-		LogUtil.print(ATFD);
 	}
 
 	@Override
-	public long getMetricResult() {
-		return ATFD;
+	public HashMap<String, Long> getMetricResult() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

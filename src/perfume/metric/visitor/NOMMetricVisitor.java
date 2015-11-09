@@ -1,14 +1,15 @@
 package perfume.metric.visitor;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
+import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.util.LogUtil;
 import perfume.util.ast.InstanceOfUtil;
 
 /**
@@ -20,47 +21,51 @@ import perfume.util.ast.InstanceOfUtil;
  * </ul>
  */
 public class NOMMetricVisitor extends AbstractMetricVisitor {
-	private long NOM = 0;
+	private HashMap<String, Long> NOMMap = new HashMap<>();
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
-		//TODO
-		LogUtil.print(node.getName().toString());
 		countNOM(node);		
 		return false;
 	}
 	
 	private void countNOM(TypeDeclaration node) {
+		mPkgNameBuilder.append(node.getName().toString());
+		long result = 0;
+		
 		if (node.isInterface()) {
-			NOM = -2;
+			result = -2;
+			NOMMap.put(mPkgNameBuilder.toString(), -2l);
 			return;
 		}
 		
-		NOM = node.getMethods().length;
+		result = node.getMethods().length;
 		
 		for (MethodDeclaration method: node.getMethods()) {
 			List<ASTNode> modifiers = method.modifiers();
 			for (ASTNode modifier: modifiers) {
-				if (InstanceOfUtil.isModifier(modifier) && ((Modifier)modifier).isAbstract()) {
-					NOM--;
+				if (InstanceOfUtil.isModifier(modifier) && 
+						((Modifier)modifier).isAbstract()) {
+					result--;
 				}
 			}
-		}		
+		}
+		
+		NOMMap.put(mPkgNameBuilder.toString(), result);
 	}
 	
 	@Override
 	public void beforeMeasurement(String javaPath,CompilationUnit compUnit) {
-		NOM = 0;
+		getPkgName(compUnit);
 	}
 
 	@Override
 	public void afterMeasurement() {
-		LogUtil.print(NOM);
 	}
 
 	@Override
-	public long getMetricResult() {
-		return NOM;
+	public HashMap<String, Long> getMetricResult() {
+		return NOMMap;
 	}
 
 }

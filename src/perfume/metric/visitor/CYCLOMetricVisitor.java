@@ -2,6 +2,7 @@ package perfume.metric.visitor;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -162,9 +163,9 @@ public class CYCLOMetricVisitor extends AbstractMetricVisitor {
 		}
 
 		@Override
-		public long getMetricResult() {
-//			System.out.println(cyclomatic);
-			return 0;
+		public HashMap<String, Long> getMetricResult() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 	}
