@@ -1,16 +1,13 @@
-package perfume.metric.visitor;
+package perfume.metric;
 
 import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
-import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
-import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.util.LogUtil;
 import perfume.util.ast.InstanceOfUtil;
 
 /**
@@ -22,7 +19,7 @@ import perfume.util.ast.InstanceOfUtil;
  * <li>Default Values: -2 for Interface</li>
  * </ul>
  */
-public class NOPAMetricVisitor extends AbstractMetricVisitor {
+public class NOPAMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> NOPAMap = new HashMap<>();
 	
 	@Override
@@ -61,15 +58,6 @@ public class NOPAMetricVisitor extends AbstractMetricVisitor {
 			result += flag ? field.fragments().size() : 0;
 		}
 		NOPAMap.put(mPkgNameBuilder.toString(), result);
-	}
-	
-	@Override
-	public void beforeMeasurement(String javaPath,CompilationUnit compUnit) {
-		getPkgName(compUnit);
-	}
-
-	@Override
-	public void afterMeasurement() {
 	}
 
 	@Override

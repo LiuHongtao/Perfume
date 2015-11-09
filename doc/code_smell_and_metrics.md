@@ -29,7 +29,7 @@
 | 015 | NACC | Number of ACCessors (getter/setter) |  |  |
 | 016 | NAD | Number of Attributes in a class? |  |  |
 | 017 | NOA | Number Of Attributes |  |  ![progress](http://progressed.io/bar/100?title=neo)  |
-| 018 | NOAM | Number Of Accessor Methods |  |  |
+| 018 | NOAM | Number Of Accessor Methods |  | ![progress](http://progressed.io/bar/5?title=lht) |
 | 019 | NOAV | Number Of Accessd Variables |  |  |
 | 020 | NOM | Number Of Methods | Don't measured for Abstract methods, Interface, and inner classes? | ![progress](http://progressed.io/bar/100?title=lht) |
 | 021 | NOP | Number Of Properties? |  |  |

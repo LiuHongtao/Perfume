@@ -4,16 +4,18 @@ import java.util.HashMap;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import perfume.metric.AbstractMetricVisitor;
+
 public class WMCMetricVisitor extends AbstractMetricVisitor {
 
 	@Override
-	public void beforeMeasurement(String javaPath, CompilationUnit compUnit) {
+	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void afterMeasurement() {
+	public void afterMetric() {
 		// TODO Auto-generated method stub
 
 	}

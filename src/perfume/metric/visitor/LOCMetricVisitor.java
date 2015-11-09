@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.analyzer.SumJavaCode;
 import perfume.util.ast.JdtAstUtil;
 
@@ -16,7 +17,7 @@ public class LOCMetricVisitor extends AbstractMetricVisitor{
 	private String javaPath;
 
 	@Override
-	public void beforeMeasurement(String javaPath, CompilationUnit compUnit) {
+	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		this.javaPath = javaPath;
 		int[] result = SumJavaCode.LineOfCode(JdtAstUtil.getFile(javaPath));
 		noCommentCodeLine = result[0];
@@ -27,7 +28,7 @@ public class LOCMetricVisitor extends AbstractMetricVisitor{
 	}
 
 	@Override
-	public void afterMeasurement() {
+	public void afterMetric() {
 		System.out.println("FilePath:" + javaPath + "\tLOCtotal:" + totalLines + "\tlOJavaC:" + noCommentCodeLine
 				+ "\tcommentLines:" + commentLines + "\tLOBlankL:" + blankLines);
 		

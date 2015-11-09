@@ -1,14 +1,14 @@
 package perfume.test.metric;
 
-import perfume.metric.AbstractMeasurement;
+import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.MetricUtil;
-import perfume.metric.visitor.NOPAMetricVisitor;
+import perfume.metric.NOPAMetric;
 import perfume.util.LogUtil;
 
 public class NOPATest {
 	
 	public NOPATest(String projectPath) {
-		AbstractMeasurement measurement = new NOPAMetricVisitor();
+		AbstractMetricVisitor measurement = new NOPAMetric();
 		MetricUtil.startMetric(
 				projectPath, 
 				measurement);

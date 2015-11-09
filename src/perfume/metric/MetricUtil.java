@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import perfume.metric.visitor.AbstractMetricVisitor;
 import perfume.util.FileUtil;
-import perfume.util.LogUtil;
 import perfume.util.ast.JdtAstUtil;
 
 public class MetricUtil {
@@ -16,18 +14,16 @@ public class MetricUtil {
 	 * @param projectPath
 	 * @param measurements
 	 */
-	public static void startMetric(String projectPath, AbstractMeasurement... measurements) {
+	public static void startMetric(String projectPath, AbstractMetricVisitor... metrics) {
 		ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
 
 		for (String path: filePath) {
 			try {
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
-				for (AbstractMeasurement measurement: measurements) {					
-					measurement.beforeMeasurement(path,compUnit);
-					//TODO
-//					LogUtil.print(compUnit.getPackage().getName().toString());
-					compUnit.accept(measurement);
-					measurement.afterMeasurement();
+				for (AbstractMetricVisitor metric: metrics) {					
+					metric.beforeMetric(path, compUnit);
+					compUnit.accept(metric);
+					metric.afterMetric();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

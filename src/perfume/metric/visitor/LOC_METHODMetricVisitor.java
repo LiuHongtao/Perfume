@@ -8,6 +8,7 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.analyzer.SumJavaCode;
 import perfume.util.ast.JdtAstUtil;
 
@@ -64,7 +65,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 	}
 
 	@Override
-	public void beforeMeasurement(String javaPath, CompilationUnit compUnit) {
+	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		noCommentCodeLine = 0;
 		commentLines = 0;
 		blankLines = 0;
@@ -75,7 +76,7 @@ public class LOC_METHODMetricVisitor extends AbstractMetricVisitor {
 	}
 
 	@Override
-	public void afterMeasurement() {
+	public void afterMetric() {
 		
 	}
 

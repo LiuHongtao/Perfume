@@ -1,14 +1,14 @@
 package perfume.test.metric;
 
-import perfume.metric.AbstractMeasurement;
+import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.MetricUtil;
-import perfume.metric.visitor.NOMMetricVisitor;
+import perfume.metric.NOMMetric;
 import perfume.util.LogUtil;
 
 public class NOMTest {
 
 	public NOMTest(String projectPath) {
-		AbstractMeasurement measurement = new NOMMetricVisitor();
+		AbstractMetricVisitor measurement = new NOMMetric();
 		MetricUtil.startMetric(
 				projectPath, 
 				measurement);	

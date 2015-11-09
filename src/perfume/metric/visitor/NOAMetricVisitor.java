@@ -9,6 +9,8 @@ import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
+import perfume.metric.AbstractMetricVisitor;
+
 public class NOAMetricVisitor extends AbstractMetricVisitor {
 
 	private String javaPath;
@@ -33,7 +35,7 @@ public class NOAMetricVisitor extends AbstractMetricVisitor {
 	}
 
 	@Override
-	public void beforeMeasurement(String javaPath, CompilationUnit compUnit) {
+	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		this.compUnit = compUnit;
 		this.javaPath = javaPath;
 		System.out.println(javaPath);
@@ -41,7 +43,7 @@ public class NOAMetricVisitor extends AbstractMetricVisitor {
 	}
 
 	@Override
-	public void afterMeasurement() {
+	public void afterMetric() {
 		// TODO Auto-generated method stub
 
 	}

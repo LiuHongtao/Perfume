@@ -19,7 +19,7 @@ import org.eclipse.jdt.core.dom.SwitchCase;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
 import perfume.util.ast.JdtAstUtil;
-
+import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.model.*;
 
 
@@ -142,7 +142,7 @@ public class CYCLOMetricVisitor extends AbstractMetricVisitor {
 		}
 
 		@Override
-		public void beforeMeasurement(String javaPath, CompilationUnit compUnit) {
+		public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 			unitPath = javaPath;
 			try {
 				source = JdtAstUtil.getSource(unitPath);
@@ -155,7 +155,7 @@ public class CYCLOMetricVisitor extends AbstractMetricVisitor {
 		}
 
 		@Override
-		public void afterMeasurement() {
+		public void afterMetric() {
 			source = "";
 			System.out.println("Total CYCLO of this java file :"+totalCYCLO);
 			cyclomatic = 1;
