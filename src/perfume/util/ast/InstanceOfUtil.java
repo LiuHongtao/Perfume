@@ -22,6 +22,7 @@ import org.eclipse.jdt.core.dom.ParenthesizedExpression;
 import org.eclipse.jdt.core.dom.PostfixExpression;
 import org.eclipse.jdt.core.dom.PrefixExpression;
 import org.eclipse.jdt.core.dom.PrimitiveType;
+import org.eclipse.jdt.core.dom.ReturnStatement;
 import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.SimpleType;
 import org.eclipse.jdt.core.dom.SwitchCase;
@@ -142,5 +143,9 @@ public class InstanceOfUtil {
 	
 	public static boolean isModifier(ASTNode node) {
 		return (node instanceof Modifier);
+	}
+	
+	public static boolean isReturnStatement(ASTNode node) {
+		return (node instanceof ReturnStatement);
 	}
 }
