@@ -3,10 +3,10 @@ package perfume.metric;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-
 
 import perfume.metric.visitor.CBOClassVisitor;
 
@@ -16,18 +16,23 @@ import perfume.metric.visitor.CBOClassVisitor;
  * <li>Description: CBO for a class is a count of the number of other classes to
  * which it is coupled.</li>
  * <li>Granularity: Class</li>
- * <li>Default Values: -2 for Interface</li>
+ * <li>Default Values: </li>
  * </ul>
  */
 public class CBOMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CBOMap = new HashMap<>();
 	private HashMap<String, Long> CBOOfClassMap = new HashMap<>();
-	public boolean visit(TypeDeclaration node) {
-		CBOMap.put(node.getName().toString(), 1l);
-		CBOClassVisitor cboClassVisitor = new CBOClassVisitor(CBOOfClassMap);
-		
-		node.accept(cboClassVisitor);
+	private String currentClassName;
 
+	public boolean visit(TypeDeclaration node) {
+		String className = node.getName().toString();
+		currentClassName = className;
+		if (!CBOMap.containsKey(className))
+			CBOMap.put(className, 0l);
+		CBOClassVisitor cboClassVisitor = new CBOClassVisitor(CBOOfClassMap,currentClassName);
+
+		node.accept(cboClassVisitor);
+		cboClassVisitor.getMetricResult();
 		return false;
 	}
 
@@ -39,13 +44,27 @@ public class CBOMetric extends AbstractMetricVisitor {
 
 	@Override
 	public void afterMetric() {
-		
 
+	}
+
+	public void combineMap() {
+
+		Iterator<Entry<String, Long>> iter1 = CBOMap.entrySet().iterator();
+		while (iter1.hasNext()) {
+			Map.Entry<String, Long> entry1 = (Entry<String, Long>) iter1.next();
+			Long m1value = entry1.getValue() == null ? 0 : entry1.getValue();
+			Long m2value = CBOOfClassMap.get(entry1.getKey()) == null ? 0 : CBOOfClassMap.get(entry1.getKey());
+
+			if (m2value != null) {
+				CBOMap.put(entry1.getKey(), m1value + m2value);
+			}
+
+		}
 	}
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		// TODO Auto-generated method stub
+		combineMap();
 		return CBOMap;
 	}
 

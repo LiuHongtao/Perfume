@@ -9,7 +9,14 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import perfume.metric.analyzer.SumJavaCode;
 import perfume.util.ast.JdtAstUtil;
-
+/**
+ * <ul>
+ * <li>Name: LOC_METHOD, Lines Of Code in a method</li>
+ * <li>Description: The line of code in one method.
+ * <li>Granularity: Class</li>
+ * <li>Default Values: Number of Code Lines </li>
+ * </ul>
+ */
 public class LOC_METHODMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> LOC_METHOD = new HashMap<>();
 	private String javaPath;

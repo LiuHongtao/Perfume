@@ -13,7 +13,7 @@
 | NO | Metric Label | Metric Name | Description | Progress |
 |:-----|:-----|:-----|:------|:-----|
 | 001 | ATFD | Access To Foreign Data | The number of attributes from unrelated classes accessed directly or by invoking accessor methods | ![progress](http://progressed.io/bar/5?title=lht) |
-| 002 | CBO | Coupling Between Objects | The coupling between object classes (CBO) metric represents the number of classes coupled to a given class (efferent couplings and afferent couplings). This coupling can occur through method calls, field accesses, inheritance, arguments, return types, and exceptions. |  |
+| 002 | CBO | Coupling Between Objects | The coupling between object classes (CBO) metric represents the number of classes coupled to a given class (efferent couplings and afferent couplings). This coupling can occur through method calls, field accesses, inheritance, arguments, return types, and exceptions. | ![progress](http://progressed.io/bar/100?title=neo) |
 | 003 | CYCLO | McCabe’s CYCLOmatic complexity |  | ![progress](http://progressed.io/bar/100?title=neo) |
 | 004 | DDP |  |  |  |
 | 005 | FDP | Foreign Data Providers | The number of distinct classes in which the attributes accessed in cf. with the ATFD metric are defined |  |

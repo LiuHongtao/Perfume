@@ -18,7 +18,14 @@ import org.eclipse.jdt.core.dom.WhileStatement;
 
 import perfume.metric.model.MethodParam;
 import perfume.util.ast.JdtAstUtil;
-
+/**
+ * <ul>
+ * <li>Name: CYCLO, McCabe’s CYCLOmatic complexity</li>
+ * <li>Description: McCabe’s CYCLOmatic complexity of a java class.</li>
+ * <li>Granularity: Class</li>
+ * <li>Default Values: Total number of CYCLO of a class</li>
+ * </ul>
+ */
 public class CYCLOMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CYCLOMetric = new HashMap<>();
 	private String javaPath;
