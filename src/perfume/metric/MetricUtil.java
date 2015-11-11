@@ -14,13 +14,13 @@ public class MetricUtil {
 	 * @param projectPath
 	 * @param measurements
 	 */
-	public static void startMetric(String projectPath, AbstractMetricVisitor... metrics) {
+	public static void startMetric(String projectPath, AbstractMetric... metrics) {
 		ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
 
 		for (String path: filePath) {
 			try {
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
-				for (AbstractMetricVisitor metric: metrics) {					
+				for (AbstractMetric metric: metrics) {					
 					metric.beforeMetric(path, compUnit);
 					compUnit.accept(metric);
 					metric.afterMetric();
