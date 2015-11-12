@@ -1,15 +1,16 @@
 package perfume.test.metric;
 
-import perfume.metric.AbstractMetricVisitor;
+import perfume.metric.AbstractMetric ;
 import perfume.metric.MetricUtil;
-import perfume.metric.visitor.WMCMetricVisitor;
+import perfume.metric.WMCMetric;
+import perfume.util.LogUtil;
 
 public class WMCTest {
 	public WMCTest(String projectPath) {
-		AbstractMetricVisitor measurement = new WMCMetricVisitor();	
+		AbstractMetric measurement = new WMCMetric();	
 		MetricUtil.startMetric(
 				 projectPath, 
 				measurement);
-	
+		LogUtil.print(measurement.getMetricResult());
 	}
 }

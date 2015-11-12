@@ -26,9 +26,9 @@ import perfume.util.ast.JdtAstUtil;
  * <li>Default Values: Total number of CYCLO of a class</li>
  * </ul>
  */
-public class CYCLOMetric extends AbstractMetricVisitor {
+public class CYCLOMetric extends AbstractMetric {
 	private HashMap<String, Long> CYCLOMetric = new HashMap<>();
-	private String javaPath;
+	private String javaPath,className;
 	private CompilationUnit compUnit;
 	private int cyclomatic = 1 ,totalCYCLO;
 	private String source;
@@ -37,12 +37,12 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 
 	
 	public boolean visit(TypeDeclaration node){
-		mPkgNameBuilder.append(node.getName().toString());
+		className=node.getName().toString();
 		long result = 0;
 		
 		if (node.isInterface()) {
 			result = -2;
-			CYCLOMetric.put(mPkgNameBuilder.toString(), result);
+			CYCLOMetric.put(mPkgNameBuilder.toString()+className, result);
 			return false;
 		}
 		
@@ -173,14 +173,14 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 	public void afterMetric() {
 		source = "";
 		//System.out.println("Total CYCLO of this java file :"+totalCYCLO);
-		
+		CYCLOMetric.put(mPkgNameBuilder.toString()+className, (long)totalCYCLO);
 		cyclomatic = 1;
 		totalCYCLO = 0;
 	}
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		CYCLOMetric.put(mPkgNameBuilder.toString(), (long)totalCYCLO);
+		
 		return CYCLOMetric;
 	}
 

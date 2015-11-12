@@ -15,7 +15,17 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.metric.visitor.LOCMMethodVisitor;
-
+/**
+ * <ul>
+ * <li>Name: LCOM, Lack Of Cohesion between Methods </li>
+ * <li>A class's lack of cohesion in methods (LCOM) metric counts the sets of 
+ * methods in a class that are not related through the sharing of some of the 
+ * class's fields. The original definition of this metric (which is the one 
+ * used in ckjm) considers all pairs of a class's methods.</li>
+ * <li>Granularity: Class</li>
+ * <li>Default Values: </li>
+ * </ul>
+ */
 public class LCOMMetric extends AbstractMetric {
 	private Map<String, List<String>> methodList;
 	private List<String> vdfs;

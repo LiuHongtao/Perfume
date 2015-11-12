@@ -10,5 +10,6 @@ public class CBOTest {
 		AbstractMetricVisitor measurement = new CBOMetric();
 		MetricUtil.startMetric(projectPath, measurement);
 		LogUtil.print(measurement.getMetricResult());
+		
 	}
 }
