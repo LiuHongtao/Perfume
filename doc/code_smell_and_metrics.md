@@ -30,9 +30,7 @@
 | 016 | NAD | Number of Attributes in a class? |  | NOA |
 | 017 | NOA | Number Of Attributes |  |  ![progress](http://progressed.io/bar/100?title=neo)  |
 | 018 | NOAM | Number Of Accessor Methods | The number of accessor (getter and setter) methods of a class. | ![progress](http://progressed.io/bar/100?title=lht) |
-| 019 | NOAV | Number Of Accessd Variables | The total number of variables accessed directly or through accessor methods from the measured
-operation. Variables include parameters, local variables, but also instance variables and global
-variables declared in classes belonging to the system. |  |
+| 019 | NOAV | Number Of Accessd Variables | The total number of variables accessed directly or through accessor methods from the measured operation. Variables include parameters, local variables, but also instance variables and global variables declared in classes belonging to the system. |  |
 | 020 | NOM | Number Of Methods | Don't measured for Abstract methods, Interface, and inner classes? | ![progress](http://progressed.io/bar/100?title=lht) |
 | 021 | NOP | Number Of Properties? |  |  |
 | 022 | NOP* | Number Of Parameters |  |  |
