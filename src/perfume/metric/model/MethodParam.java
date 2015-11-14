@@ -1,5 +1,8 @@
 package perfume.metric.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MethodParam {
 	public String path;
 	private String methodName;
@@ -9,7 +12,26 @@ public class MethodParam {
 	private int endLineNum;
 	private int methodCyclomatic =1;
 	private String className;
+	private int numberOfVarible = 0;
+	private Set<String> methodVaribleList = new HashSet<String>();
 	
+	public Set<String> getMethodVaribleList() {
+		return methodVaribleList;
+	}
+
+	public void addMethodVarible(String methodVarible) {
+		this.methodVaribleList.add( methodVarible);
+	}
+	
+	
+
+	public int getNumberOfVarible() {
+		return numberOfVarible;
+	}
+
+	public void addNumberOfVarible(int numberOfVarible) {
+		this.numberOfVarible += numberOfVarible;
+	}
 
 	public String getPath() {
 		return path;
@@ -80,3 +102,4 @@ public class MethodParam {
 
 	}
 }
+
