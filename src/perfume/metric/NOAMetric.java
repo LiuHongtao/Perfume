@@ -21,8 +21,9 @@ public class NOAMetric extends AbstractMetric {
 
 	private String javaPath;
 	private CompilationUnit compUnit;
-
+	private HashMap<String, Long> NOAMap = new HashMap<>();
 	public boolean visit(TypeDeclaration node) {
+		mPkgNameBuilder.append(node.getName().toString());
 		int countArributes = 0;
 		System.out.println("Class Name:" + node.getName().toString());
 		FieldDeclaration[] fd = node.getFields();
@@ -33,11 +34,11 @@ public class NOAMetric extends AbstractMetric {
 			countArributes += fg.size();
 			for (Object fgTemp : fg) {
 				VariableDeclarationFragment vdf = (VariableDeclarationFragment) fgTemp;
-				System.out.println(md + "\t" + tp.toString() + "\t" + vdf.getName().toString());
+//				System.out.println(md + "\t" + tp.toString() + "\t" + vdf.getName().toString());
 			}
 		}
-		System.out.println("Total:" + countArributes);
-
+//		System.out.println("Total:" + countArributes);
+		NOAMap.put(mPkgNameBuilder.toString(), (long)countArributes);
 		return false;
 
 	}
@@ -46,7 +47,7 @@ public class NOAMetric extends AbstractMetric {
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		this.compUnit = compUnit;
 		this.javaPath = javaPath;
-		System.out.println(javaPath);
+//		System.out.println(javaPath);
 
 	}
 
@@ -58,7 +59,7 @@ public class NOAMetric extends AbstractMetric {
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		return NOAMap;
 	}
 }
