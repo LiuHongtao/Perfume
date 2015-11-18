@@ -67,7 +67,6 @@ public class MAXNESTINGMethodVisitor extends ASTVisitor {
 	
 	@Override
 	public void endVisit(DoStatement node) {
-		super.endVisit(node);
 		endNest();
 	}
 	
@@ -78,6 +77,7 @@ public class MAXNESTINGMethodVisitor extends ASTVisitor {
 	
 	@Override
 	public void endVisit(ForStatement node) {
+		endNest();
 	}
 	
 	@Override
