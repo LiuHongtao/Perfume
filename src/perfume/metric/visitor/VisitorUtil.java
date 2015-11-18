@@ -1,34 +1,32 @@
-package perfume.metric;
+package perfume.metric.visitor;
 
 import java.util.ArrayList;
 
+import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import perfume.util.FileUtil;
 import perfume.util.ast.JdtAstUtil;
 
-public class MetricUtil {
+public class VisitorUtil {
 
 	/**
-	 * Only for AST
+	 * Only for Visitor
 	 * @param projectPath
-	 * @param measurements
+	 * @param visitors
 	 */
-	public static void startMetric(String projectPath, AbstractMetric... metrics) {
+	public static void startVisit(String projectPath, ASTVisitor... visitors) {
 		ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
 
 		for (String path: filePath) {
 			try {
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
-				for (AbstractMetric metric: metrics) {					
-					metric.beforeMetric(path, compUnit);
-					compUnit.accept(metric);
-					metric.afterMetric();
+				for (ASTVisitor visitor: visitors) {					
+					compUnit.accept(visitor);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
 }

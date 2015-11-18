@@ -12,7 +12,7 @@ public abstract class AbstractMetric extends ASTVisitor {
 	/**
 	 * Before the measurement started
 	 */
-	public abstract void beforeMetric(String javaPath, CompilationUnit compUnit);
+	public abstract void beforeMetric(String projectPath, CompilationUnit compUnit);
 	
 	/**
 	 * After the measurement finished
