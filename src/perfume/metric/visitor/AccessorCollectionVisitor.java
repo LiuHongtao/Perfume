@@ -12,13 +12,14 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.Statement;
+import org.eclipse.jdt.core.dom.ThisExpression;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.util.StringUtil;
-import perfume.util.ast.InstanceOfUtil;
 import perfume.util.ast.MethodUtil;
 
 /**
@@ -85,7 +86,7 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 			}	
 			
 			// what method returns void is not an accessor
-			if (InstanceOfUtil.isPrimitiveType(returnType)) {
+			if (returnType instanceof PrimitiveType) {
 				PrimitiveType type = (PrimitiveType)returnType;
 				if (type.getPrimitiveTypeCode() == PrimitiveType.VOID) {
 					continue;
@@ -99,10 +100,9 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 					ReturnStatement returnStmt = (ReturnStatement)statements.get(0);
 					Expression returnExp = returnStmt.getExpression();
 					// return this.[Field]
-					if (InstanceOfUtil.isFieldAccess(returnExp)) {
+					if (returnExp instanceof FieldAccess) {
 						FieldAccess fieldAccess = (FieldAccess)returnExp;
-						if (InstanceOfUtil.isThisExpression(
-								fieldAccess.getExpression())) {
+						if (fieldAccess.getExpression() instanceof ThisExpression) {
 							accessorSet.add(
 									StringUtil.stringConnection(
 //											mPkgName, ".", 
@@ -111,7 +111,7 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 						}
 					}
 					// return [Field]
-					else if (InstanceOfUtil.isSimpleName(returnExp) && 
+					else if (returnExp instanceof SimpleName && 
 							fieldsNameSet.contains(returnExp.toString())) {
 						accessorSet.add(
 								StringUtil.stringConnection(

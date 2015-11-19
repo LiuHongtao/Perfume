@@ -2,6 +2,7 @@ package perfume.metric;
 
 import java.util.HashMap;
 
+import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
@@ -22,10 +23,19 @@ public class ATFDMetric extends AbstractMetricVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {
 		setPkgClassName(node);
+		
+		if (node.isInterface()) {
+			ATFDMap.put(getPkgClassName(), -2l);
+			return false;
+		}
+		
 		ATFDVisitor visitor = new ATFDVisitor(mVisitor.getAccessorSet());
 		
 		for (MethodDeclaration method: node.getMethods()) {
-			method.accept(visitor);
+			Block body = method.getBody();
+			if (body != null) {
+				body.accept(visitor);
+			}
 		}
 		
 		ATFDMap.put(getPkgClassName(), visitor.getATFD());
