@@ -18,26 +18,25 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.util.StringUtil;
-import perfume.util.ast.FieldUtil;
 import perfume.util.ast.InstanceOfUtil;
 import perfume.util.ast.MethodUtil;
 
+/**
+ * collection of accessor in the whole project
+ * @author lht-Mac
+ * 不够严谨
+ */
 public class AccessorCollectionVisitor extends ASTVisitor {
 
-	private HashSet<String> publicFieldSet = new HashSet<>();
 	private HashSet<String> accessorSet = new HashSet<>();
-	
-	public HashSet<String> getPublicFieldSet() {
-		return publicFieldSet;
-	}
 
 	public HashSet<String> getAccessorSet() {
 		return accessorSet;
 	}
 
 	private String mPkgName = "";
-	private HashSet<String> fieldsTypeSet;
-	private HashSet<String> fieldsNameSet;
+	private HashSet<String> fieldsTypeSet = new HashSet<>();
+	private HashSet<String> fieldsNameSet = new HashSet<>();
 
 	@Override
 	public boolean visit(CompilationUnit node) {
@@ -48,8 +47,8 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 		
 		for (Object o: node.types()) {
 			if (o instanceof TypeDeclaration) {
-				fieldsTypeSet = new HashSet<>();
-				fieldsNameSet = new HashSet<>();
+				fieldsTypeSet.clear();
+				fieldsNameSet.clear();
 						
 				TypeDeclaration type = (TypeDeclaration)o;
 				String className = type.getName().toString();
@@ -66,14 +65,6 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 			for (VariableDeclarationFragment variable: 
 				(List<VariableDeclarationFragment>)field.fragments()) {
 				String varName = variable.getName().toString();
-				
-				if (FieldUtil.isPublic(field)) {
-					publicFieldSet.add(
-							StringUtil.stringConnection(
-									mPkgName, ".", 
-									className, ".", 
-									varName));
-				}
 
 				fieldsTypeSet.add(fieldsType);
 				fieldsNameSet.add(varName);
@@ -104,7 +95,7 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 			if (fieldsTypeSet.contains(returnType.toString())) {
 				List<Statement> statements = method.getBody().statements();
 				if (statements.size() == 1 && 
-						InstanceOfUtil.isReturnStatement(statements.get(0))) {
+						statements.get(0) instanceof ReturnStatement) {
 					ReturnStatement returnStmt = (ReturnStatement)statements.get(0);
 					Expression returnExp = returnStmt.getExpression();
 					// return this.[Field]
@@ -114,8 +105,8 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 								fieldAccess.getExpression())) {
 							accessorSet.add(
 									StringUtil.stringConnection(
-											mPkgName, ".", 
-											className, ".", 
+//											mPkgName, ".", 
+//											className, ".", 
 											method.getName().toString()));
 						}
 					}
@@ -124,8 +115,8 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 							fieldsNameSet.contains(returnExp.toString())) {
 						accessorSet.add(
 								StringUtil.stringConnection(
-										mPkgName, ".", 
-										className, ".", 
+//										mPkgName, ".", 
+//										className, ".", 
 										method.getName().toString()));
 					}
 				}

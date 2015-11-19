@@ -23,7 +23,7 @@ public class NOAMetric extends AbstractMetric {
 	private CompilationUnit compUnit;
 	private HashMap<String, Long> NOAMap = new HashMap<>();
 	public boolean visit(TypeDeclaration node) {
-		mPkgNameBuilder.append(node.getName().toString());
+		setPkgClassName(node);
 		int countArributes = 0;
 		System.out.println("Class Name:" + node.getName().toString());
 		FieldDeclaration[] fd = node.getFields();
@@ -38,7 +38,7 @@ public class NOAMetric extends AbstractMetric {
 			}
 		}
 //		System.out.println("Total:" + countArributes);
-		NOAMap.put(mPkgNameBuilder.toString(), (long)countArributes);
+		NOAMap.put(getPkgClassName(), (long)countArributes);
 		return false;
 
 	}

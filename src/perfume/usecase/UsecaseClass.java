@@ -5,6 +5,9 @@ public class UsecaseClass implements UsecaseInterface {
 	public UsecaseClass() {
 		super();
 		System.out.println(a);
+		UsecaseClassB asd = new UsecaseClassB();
+		System.out.println(UsecaseClassB.a);
+		System.out.println(asd.b);
 	}
 	
 	public void func() {

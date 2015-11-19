@@ -1,8 +1,6 @@
 package perfume.metric;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -31,10 +29,10 @@ public class LOC_CLASSMetric  extends AbstractMetricVisitor {
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
-		mPkgNameBuilder.append(node.getName().toString());
+		setPkgClassName(node);
 		
 		if (node.isInterface()) {
-			LOC_CLASS.put(mPkgNameBuilder.toString(), -2l);
+			LOC_CLASS.put(getPkgClassName(), -2l);
 			
 		} else {
 			// classCount++;
@@ -51,7 +49,7 @@ public class LOC_CLASSMetric  extends AbstractMetricVisitor {
 			commentLines = result[1];
 			blankLines = result[2];
 			totalLines = noCommentCodeLine + commentLines + blankLines;
-			LOC_CLASS.put(mPkgNameBuilder.toString(), (long)noCommentCodeLine);
+			LOC_CLASS.put(getPkgClassName(), (long)noCommentCodeLine);
 
 		}
 

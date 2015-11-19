@@ -28,13 +28,13 @@ public class NOPAMetric extends AbstractMetricVisitor {
 		return false;
 	}
 	
-	private void countNOPA(TypeDeclaration node) {		
-		mPkgNameBuilder.append(node.getName().toString());
+	private void countNOPA(TypeDeclaration node) {
+		setPkgClassName(node);
 		long result = 0;
 		
 		if (node.isInterface()) {
 			result = -2;
-			NOPAMap.put(mPkgNameBuilder.toString(), -2l);
+			NOPAMap.put(getPkgClassName(), -2l);
 			return;
 		}
 		
@@ -57,7 +57,7 @@ public class NOPAMetric extends AbstractMetricVisitor {
 			}
 			result += flag ? field.fragments().size() : 0;
 		}
-		NOPAMap.put(mPkgNameBuilder.toString(), result);
+		NOPAMap.put(getPkgClassName(), result);
 	}
 
 	@Override
