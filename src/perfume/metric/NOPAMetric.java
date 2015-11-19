@@ -8,8 +8,6 @@ import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.util.ast.InstanceOfUtil;
-
 /**
  * <ul>
  * <li>Name: NOPA, Number Of Public Attribute</li>
@@ -44,7 +42,7 @@ public class NOPAMetric extends AbstractMetricVisitor {
 			for (ASTNode modifier: modifiers) {
 				// if the Attribute is not static or final
 				// it have to be public
-				if (InstanceOfUtil.isModifier(modifier)) {
+				if (modifier instanceof Modifier) {
 					if (((Modifier)modifier).isStatic() ||
 							((Modifier)modifier).isFinal()) {
 						flag = false;

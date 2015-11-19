@@ -36,7 +36,7 @@ public abstract class AbstractMetric extends ASTVisitor {
 	protected void setPkgName(CompilationUnit compUnit) {
 		PackageDeclaration pd = compUnit.getPackage();
 		if (pd != null) {
-			mPkgName = compUnit.getPackage().getName().toString();
+			mPkgName = compUnit.getPackage().getName().getFullyQualifiedName();
 		}
 		else {
 			mPkgName = "";
@@ -52,7 +52,7 @@ public abstract class AbstractMetric extends ASTVisitor {
 	protected void setPkgClassName(TypeDeclaration type) {
 		mPkgClassName = StringUtil.stringConnection(
 				mPkgName, ".", 
-				type.getName().toString());
+				type.getName().getIdentifier());
 	}
 	
 	protected String getPkgClassName() {

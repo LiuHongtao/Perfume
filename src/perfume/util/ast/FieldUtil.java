@@ -11,7 +11,7 @@ public class FieldUtil {
 	public static boolean isPublic(FieldDeclaration field) {
 		List<ASTNode> modifiers = field.modifiers();
 		for (ASTNode modifier: modifiers) {
-			if (InstanceOfUtil.isModifier(modifier) && 
+			if (modifier instanceof Modifier && 
 					((Modifier)modifier).isPublic()) {
 				return true;
 			}
