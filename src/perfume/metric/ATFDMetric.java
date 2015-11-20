@@ -10,6 +10,15 @@ import perfume.metric.visitor.ATFDVisitor;
 import perfume.metric.visitor.AccessorCollectionVisitor;
 import perfume.metric.visitor.VisitorUtil;
 
+/**
+ * <ul>
+ * <li>Name: ATFD, Access To Foreign Data</li>
+ * <li>Description: The number of attributes from unrelated classes accessed directly 
+ * or by invoking accessor methods</li>
+ * <li>Granularity: Class</li>
+ * <li>Default Values: -2 for Interface</li>
+ * </ul>
+ */
 public class ATFDMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> ATFDMap = new HashMap<>();
 	

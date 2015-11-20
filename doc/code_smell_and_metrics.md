@@ -1,6 +1,6 @@
 ## Code Smells and Source Code Metrics
 
-* Data Class: ~~NACC~~, NOV, LOCPROB, ~~LOCACTUAL~, WOC, ~~NOPA~~, ~~NOAM(NACC)~~, ~~WMC~~
+* Data Class: ~~NACC~~, NOV, LOCPROB, ~~LOCACTUAL~~, WOC, ~~NOPA~~, ~~NOAM(NACC)~~, ~~WMC~~
 * Large Class: ~~NAD~~, ~~NOM~~, ~~LOC\_CLASS~~, NOP, ~~WMC~~, ~~NOM~~, ~~NOA~~, ~~TCC~~, ~~ATFD~~
 * Feature Envy: ~~CBO~~ (CA, CE), ~~LCOM~~, ~~ATFD~~, LAA, FDP, FEW, DDP
 * Long Method: ~~LOC\_METHOD~~, ~~CYCLO~~, ~~MAXNESTING~~, NOAV
