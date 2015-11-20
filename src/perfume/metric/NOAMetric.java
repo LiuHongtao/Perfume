@@ -25,7 +25,7 @@ public class NOAMetric extends AbstractMetric {
 	public boolean visit(TypeDeclaration node) {
 		setPkgClassName(node);
 		int countArributes = 0;
-		System.out.println("Class Name:" + node.getName().toString());
+//		System.out.println("Class Name:" + node.getName().toString());
 		FieldDeclaration[] fd = node.getFields();
 		for (FieldDeclaration fdTemp : fd) {
 			int md = fdTemp.getModifiers();
