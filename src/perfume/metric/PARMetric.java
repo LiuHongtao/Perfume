@@ -6,19 +6,17 @@ import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.metric.visitor.MAXNESTINGMethodVisitor;
 import perfume.util.StringUtil;
-import perfume.util.ast.MethodUtil;
 
 /**
  * <ul>
- * <li>Name: MAXNESTING, Max Nesting Level</li>
+ * <li>Name: PAR, number of Parameter</li>
  * <li>Granularity: Method</li>
  * <li>Default Values: -1 for method without body</li>
  * </ul>
  */
-public class MAXNESTINGMetric extends AbstractMetricVisitor {
-	private HashMap<String, Long> MAXNESTINGMap = new HashMap<>();
+public class PARMetric extends AbstractMetricVisitor {
+	private HashMap<String, Long> PARMap = new HashMap<>();
 	
 	@Override
 	public boolean visit(TypeDeclaration node) {	
@@ -30,16 +28,14 @@ public class MAXNESTINGMetric extends AbstractMetricVisitor {
 					method.getName().toString());
 			Block body = method.getBody();
 			if (body == null) {
-				MAXNESTINGMap.put(
+				PARMap.put(
 						methodName, 
 						-1l);
 			}
 			else {
-				MAXNESTINGMethodVisitor visitor = new MAXNESTINGMethodVisitor();
-				body.accept(visitor);
-				MAXNESTINGMap.put(
+				PARMap.put(
 						methodName, 
-						visitor.getMAXNESTING());
+						(long) (method.parameters().size()));
 			}
 		}
 		
@@ -48,7 +44,7 @@ public class MAXNESTINGMetric extends AbstractMetricVisitor {
 	
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		return MAXNESTINGMap;
+		return PARMap;
 	}
 
 }

@@ -6,7 +6,7 @@
 * Long Method: ~~LOC\_METHOD~~, ~~CYCLO~~, ~~MAXNESTING~~, NOAV
 * Data Clumps: Defect density
 * Lazy Class: ~~NOM~~, ~~WMC~~, ~~LOC~~, ~~CBO~~, NOP, ~~CYCLO~~, ~~NAD~~
-* Long Parameter List: PAR, NOP*
+* Long Parameter List: ~~PAR~~, ~~NOP*~~
 
 ## Metrics Names
 
@@ -33,10 +33,10 @@
 | 019 | NOAV | Number Of Accessd Variables | The total number of variables accessed directly or through accessor methods from the measured operation. Variables include parameters, local variables, but also instance variables and global variables declared in classes belonging to the system. |  |
 | 020 | NOM | Number Of Methods | Don't measured for Abstract methods, Interface, and inner classes? | ![progress](http://progressed.io/bar/100?title=lht) |
 | 021 | NOP | Number Of Properties? |  |  |
-| 022 | NOP* | Number Of Parameters |  |  |
+| 022 | NOP* | Number Of Parameters |  | PAR |
 | 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. Don't measured for Interface, and inner classes. | ![progress](http://progressed.io/bar/100?title=lht) |
 | 024 | NOV | Number Of Variables per class |  |  |
-| 025 | PAR | total number of PARameters in the selected scope |  |  |
+| 025 | PAR | total number of PARameters in the selected scope |  | ![progress](http://progressed.io/bar/100?title=lht) |
 | 026 | TCC | Tight Class Cohesion | the relative number of method pairs of a class that access in common at least one attribute of the measured class | ![progress](http://progressed.io/bar/100?title=neo) |
 | 027 | WMC | Weighted Methods per Class | A class's weighted methods per class WMC metric is simply the sum of the complexities of its methods. As a measure of complexity we can use the cyclomatic complexity, or we can abritrarily assign a complexity value of 1 to each method. The ckjm program assigns a complexity value of 1 to each method, and therefore the value of the WMC is equal to the number of methods in the class. |  ![progress](http://progressed.io/bar/100?title=neo) |
 | 028 | WOC | Weight Of a Class | The number of ”functional” public methods, divided by the total number of public members |  |
