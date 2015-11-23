@@ -11,6 +11,7 @@ public class MAXNESTINGTest {
 		AbstractMetricVisitor measurement = new MAXNESTINGMetric();
 		MetricUtil.startMetric(projectPath, measurement);
 		LogUtil.print(measurement.getMetricResult());
+		LogUtil.print(measurement.getMetricResult().size());
 	}
 
 }

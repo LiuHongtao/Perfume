@@ -58,6 +58,7 @@ public class LOC_CLASSMetric  extends AbstractMetricVisitor {
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
 		noCommentCodeLine = 0;
 		commentLines = 0;
 		blankLines = 0;
