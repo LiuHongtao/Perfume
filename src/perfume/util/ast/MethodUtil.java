@@ -11,7 +11,7 @@ public class MethodUtil {
 	public static boolean isAbstract(MethodDeclaration method) {
 		List<ASTNode> modifiers = method.modifiers();
 		for (ASTNode modifier: modifiers) {
-			if (InstanceOfUtil.isModifier(modifier) && 
+			if (modifier instanceof Modifier && 
 					((Modifier)modifier).isAbstract()) {
 				return true;
 			}

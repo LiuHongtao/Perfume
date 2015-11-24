@@ -25,12 +25,12 @@ public class NOMMetric extends AbstractMetricVisitor {
 	}
 	
 	private void countNOM(TypeDeclaration node) {
-		mPkgNameBuilder.append(node.getName().toString());
+		setPkgClassName(node);
 		long result = 0;
 		
 		if (node.isInterface()) {
 			result = -2;
-			NOMMap.put(mPkgNameBuilder.toString(), -2l);
+			NOMMap.put(getPkgClassName(), -2l);
 			return;
 		}
 		
@@ -42,7 +42,7 @@ public class NOMMetric extends AbstractMetricVisitor {
 			}
 		}
 		
-		NOMMap.put(mPkgNameBuilder.toString(), result);
+		NOMMap.put(getPkgClassName(), result);
 	}
 
 	@Override

@@ -8,8 +8,6 @@ import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import perfume.util.ast.InstanceOfUtil;
-
 /**
  * <ul>
  * <li>Name: NOPA, Number Of Public Attribute</li>
@@ -28,13 +26,13 @@ public class NOPAMetric extends AbstractMetricVisitor {
 		return false;
 	}
 	
-	private void countNOPA(TypeDeclaration node) {		
-		mPkgNameBuilder.append(node.getName().toString());
+	private void countNOPA(TypeDeclaration node) {
+		setPkgClassName(node);
 		long result = 0;
 		
 		if (node.isInterface()) {
 			result = -2;
-			NOPAMap.put(mPkgNameBuilder.toString(), -2l);
+			NOPAMap.put(getPkgClassName(), -2l);
 			return;
 		}
 		
@@ -44,7 +42,7 @@ public class NOPAMetric extends AbstractMetricVisitor {
 			for (ASTNode modifier: modifiers) {
 				// if the Attribute is not static or final
 				// it have to be public
-				if (InstanceOfUtil.isModifier(modifier)) {
+				if (modifier instanceof Modifier) {
 					if (((Modifier)modifier).isStatic() ||
 							((Modifier)modifier).isFinal()) {
 						flag = false;
@@ -57,7 +55,7 @@ public class NOPAMetric extends AbstractMetricVisitor {
 			}
 			result += flag ? field.fragments().size() : 0;
 		}
-		NOPAMap.put(mPkgNameBuilder.toString(), result);
+		NOPAMap.put(getPkgClassName(), result);
 	}
 
 	@Override

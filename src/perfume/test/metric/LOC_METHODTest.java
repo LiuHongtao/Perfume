@@ -11,6 +11,7 @@ public class LOC_METHODTest {
 		AbstractMetric measurement = new LOC_METHODMetric();
 		MetricUtil.startMetric(projectPath, measurement);
 		LogUtil.print(measurement.getMetricResult());
+		LogUtil.print(measurement.getMetricResult().size());
 	}
 
 }

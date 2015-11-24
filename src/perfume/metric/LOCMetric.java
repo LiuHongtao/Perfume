@@ -17,7 +17,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 	private String javaPath;
 
 	public boolean visit(TypeDeclaration node){
-		mPkgNameBuilder.append(node.getName().toString());
+		setPkgClassName(node);
 //		long result = 0;
 //		
 //		if (node.isInterface()) {
@@ -50,7 +50,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		LOCMetric.put(mPkgNameBuilder.toString(), (long)noCommentCodeLine);
+		LOCMetric.put(getPkgClassName(), (long)noCommentCodeLine);
 		return LOCMetric;
 	}
 }

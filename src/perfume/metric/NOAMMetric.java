@@ -10,12 +10,13 @@ import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.Statement;
+import org.eclipse.jdt.core.dom.ThisExpression;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
-import perfume.util.ast.InstanceOfUtil;
 import perfume.util.ast.MethodUtil;
 
 /**
@@ -29,9 +30,8 @@ public class NOAMMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> NOAMMap = new HashMap<>();
 	
 	@Override
-	public boolean visit(TypeDeclaration node) {
-		mPkgNameBuilder.append(node.getName().toString());		
-		
+	public boolean visit(TypeDeclaration node) {	
+	
 		// collect fields information
 		HashSet<String> fieldsTypeSet = new HashSet<>();
 		HashSet<String> fieldsNameSet = new HashSet<>();
@@ -45,13 +45,19 @@ public class NOAMMetric extends AbstractMetricVisitor {
 		}
 		
 		if (fieldsNameSet.size() > 0) {
-			countNOAM(fieldsTypeSet, fieldsNameSet, node.getMethods());	
+			setPkgClassName(node);
+			NOAMMap.put(
+					getPkgClassName(), 
+					countNOAM(
+							fieldsTypeSet, 
+							fieldsNameSet, 
+							node.getMethods()));
 		}	
 		
 		return false;
 	}
 	
-	private void countNOAM(HashSet<String> fieldsTypeSet, 
+	private long countNOAM(HashSet<String> fieldsTypeSet, 
 			HashSet<String> fieldsNameSet,
 			MethodDeclaration[] methods) {
 		long result = 0;		
@@ -67,7 +73,7 @@ public class NOAMMetric extends AbstractMetricVisitor {
 			}	
 			
 			// what method returns void is not an accessor
-			if (InstanceOfUtil.isPrimitiveType(returnType)) {
+			if (returnType instanceof PrimitiveType) {
 				PrimitiveType type = (PrimitiveType)returnType;
 				if (type.getPrimitiveTypeCode() == PrimitiveType.VOID) {
 					continue;
@@ -77,26 +83,25 @@ public class NOAMMetric extends AbstractMetricVisitor {
 			if (fieldsTypeSet.contains(returnType.toString())) {
 				List<Statement> statements = method.getBody().statements();
 				if (statements.size() == 1 && 
-						InstanceOfUtil.isReturnStatement(statements.get(0))) {
+						statements.get(0) instanceof ReturnStatement) {
 					ReturnStatement returnStmt = (ReturnStatement)statements.get(0);
 					Expression returnExp = returnStmt.getExpression();
 					// return this.[Field]
-					if (InstanceOfUtil.isFieldAccess(returnExp)) {
+					if (returnExp instanceof FieldAccess) {
 						FieldAccess fieldAccess = (FieldAccess)returnExp;
-						if (InstanceOfUtil.isThisExpression(
-								fieldAccess.getExpression())) {
+						if (fieldAccess.getExpression() instanceof ThisExpression) {
 							result++;
 						}
 					}
 					// return [Field]
-					else if (InstanceOfUtil.isSimpleName(returnExp) && 
+					else if (returnExp instanceof SimpleName && 
 							fieldsNameSet.contains(returnExp.toString())) {
 						result++;
 					}
 				}
 			}
 		}
-		NOAMMap.put(mPkgNameBuilder.toString(), result);
+		return result;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import perfume.metric.analyzer.SumJavaCode;
+import perfume.util.StringUtil;
 import perfume.util.ast.JdtAstUtil;
 /**
  * <ul>
@@ -26,18 +27,17 @@ public class LOC_METHODMetric extends AbstractMetricVisitor {
 
 	
 	public boolean visit(TypeDeclaration node) {
-		mPkgNameBuilder.append(node.getName().toString());
+		setPkgClassName(node);
 
 		return true;
 	}
 	
 	@Override
 	public boolean visit(MethodDeclaration node) {
-
-		
+			String methodName = StringUtil.stringConnection(
+					getPkgClassName(), ".",
+					node.getName().getIdentifier());
 			
-			String methodName = node.getName().getIdentifier();
-			mPkgNameBuilder.append(methodName);
 			int startLine, endLine;
 			startLine = compUnit.getLineNumber(node.getStartPosition());
 			int length = node.getLength() - 1;
@@ -48,7 +48,8 @@ public class LOC_METHODMetric extends AbstractMetricVisitor {
 			commentLines = result[1];
 			blankLines = result[2];
 			totalLines = noCommentCodeLine + commentLines + blankLines;
-			LOC_METHOD.put(mPkgNameBuilder.toString(), (long)noCommentCodeLine);
+			LOC_METHOD.put(methodName, (long)noCommentCodeLine);
+			
 //			System.out.println("MethodName:" + fullClassName + "\tLOCtotal:" + totalLines + "\tlOJavaC:" + noCommentCodeLine
 //					+ "\tcommentLines:" + commentLines + "\tLOBlankL:" + blankLines);
 			noCommentCodeLine = 0;
@@ -61,6 +62,7 @@ public class LOC_METHODMetric extends AbstractMetricVisitor {
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
 		noCommentCodeLine = 0;
 		commentLines = 0;
 		blankLines = 0;
