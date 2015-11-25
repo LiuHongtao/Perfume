@@ -35,7 +35,7 @@ public class ATFDMetric extends AbstractMetricVisitor {
 		
 		if (node.isInterface()) {
 			ATFDMap.put(getPkgClassName(), -2l);
-			return false;
+			return true;
 		}
 		
 		ATFDVisitor visitor = new ATFDVisitor(mVisitor.getAccessorSet());
