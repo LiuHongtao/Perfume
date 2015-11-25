@@ -26,7 +26,7 @@ import perfume.util.ast.JdtAstUtil;
  * <li>Default Values: Total number of CYCLO of a class</li>
  * </ul>
  */
-public class CYCLOMetric extends AbstractMetric {
+public class CYCLOMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CYCLOMetric = new HashMap<>();
 	private String javaPath;
 	private CompilationUnit compUnit;
@@ -158,6 +158,7 @@ public class CYCLOMetric extends AbstractMetric {
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
 		this.javaPath = javaPath;
 		try {
 			source = JdtAstUtil.getSource(javaPath);
