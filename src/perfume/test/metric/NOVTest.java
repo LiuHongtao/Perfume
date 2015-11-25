@@ -1,16 +1,16 @@
 package perfume.test.metric;
 
-import perfume.metric.ATFDMetric;
 import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.MetricUtil;
+import perfume.metric.NOVMetric;
 import perfume.util.LogUtil;
 
-public class ATFDTest {
+public class NOVTest {
 
-	public ATFDTest(String projectPath) {
-		AbstractMetricVisitor measurement = new ATFDMetric(projectPath);
+	public NOVTest(String projectPath) {
+		AbstractMetricVisitor measurement = new NOVMetric();
 		MetricUtil.startMetric(projectPath, measurement);
-//		LogUtil.print(measurement.getMetricResult());
+		LogUtil.print(measurement.getMetricResult());
 		LogUtil.print(measurement.getMetricResult().size());
 	}	
 }
