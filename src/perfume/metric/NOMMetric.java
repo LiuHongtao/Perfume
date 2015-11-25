@@ -10,7 +10,7 @@ import perfume.util.ast.MethodUtil;
 /**
  * <ul>
  * <li>Name: NOM, Number Of Methods</li>
- * <li>Description: Don't measured for Abstract classes, Interface, and inner classes?</li>
+ * <li>Description: Don't measured for abstract method</li>
  * <li>Granularity: Class</li>
  * <li>Default Values: -1 for Abstract, -2 for Interface</li>
  * </ul>
@@ -21,7 +21,7 @@ public class NOMMetric extends AbstractMetricVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {
 		countNOM(node);		
-		return false;
+		return true;
 	}
 	
 	private void countNOM(TypeDeclaration node) {

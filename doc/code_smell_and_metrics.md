@@ -1,11 +1,11 @@
 ## Code Smells and Source Code Metrics
 
 * Data Class: ~~NACC~~, NOV, LOCPROB, ~~LOCACTUAL~~, ~~WOC~~, ~~NOPA~~, ~~NOAM(NACC)~~, ~~WMC~~
-* Large Class: ~~NAD~~, ~~NOM~~, ~~LOC\_CLASS~~, NOP, ~~WMC~~, ~~NOM~~, ~~NOA~~, ~~TCC~~, ~~ATFD~~
+* Large Class: ~~NAD~~, ~~NOM~~, ~~LOC\_CLASS~~, ~~NOP~~, ~~WMC~~, ~~NOM~~, ~~NOA~~, ~~TCC~~, ~~ATFD~~
 * Feature Envy: ~~CBO~~ (CA, CE), ~~LCOM~~, ~~ATFD~~, LAA, FDP, FEW, DDP
 * Long Method: ~~LOC\_METHOD~~, ~~CYCLO~~, ~~MAXNESTING~~, NOAV
 * Data Clumps: Defect density
-* Lazy Class: ~~NOM~~, ~~WMC~~, ~~LOC~~, ~~CBO~~, NOP, ~~CYCLO~~, ~~NAD~~
+* Lazy Class: ~~NOM~~, ~~WMC~~, ~~LOC~~, ~~CBO~~, ~~NOP~~, ~~CYCLO~~, ~~NAD~~
 * Long Parameter List: ~~PAR~~, ~~NOP*~~
 
 ## Metrics Names
@@ -31,10 +31,10 @@
 | 017 | NOA | Number Of Attributes |  |  ![progress](http://progressed.io/bar/100?title=neo)  |
 | 018 | NOAM | Number Of Accessor Methods | The number of accessor (getter and setter) methods of a class. | ![progress](http://progressed.io/bar/100?title=lht) |
 | 019 | NOAV | Number Of Accessd Variables | The total number of variables accessed directly or through accessor methods from the measured operation. Variables include parameters, local variables, but also instance variables and global variables declared in classes belonging to the system. |  |
-| 020 | NOM | Number Of Methods | Don't measured for Abstract methods, Interface, and inner classes? | ![progress](http://progressed.io/bar/100?title=lht) |
-| 021 | NOP | Number Of Properties? |  |  |
+| 020 | NOM | Number Of Methods | Don't measured for abstract methods | ![progress](http://progressed.io/bar/100?title=lht) |
+| 021 | NOP | Number Of Properties? |  | NOA |
 | 022 | NOP* | Number Of Parameters |  | PAR |
-| 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. Don't measured for Interface, and inner classes. | ![progress](http://progressed.io/bar/100?title=lht) |
+| 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. | ![progress](http://progressed.io/bar/100?title=lht) |
 | 024 | NOV | Number Of Variables per class |  |  |
 | 025 | PAR | total number of PARameters in the selected scope |  | ![progress](http://progressed.io/bar/100?title=lht) |
 | 026 | TCC | Tight Class Cohesion | the relative number of method pairs of a class that access in common at least one attribute of the measured class | ![progress](http://progressed.io/bar/100?title=neo) |
