@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class WOCMetric extends AbstractMetric {
@@ -18,8 +19,9 @@ public class WOCMetric extends AbstractMetric {
 		MethodDeclaration[] mds = node.getMethods();
 		for (MethodDeclaration md : mds) {
 			int modifiersInt = md.getModifiers();
-			if (modifiersInt == 1) {
-				totalPublicM+=1;
+
+			if (Modifier.isPublic(modifiersInt)) {
+				totalPublicM += 1;
 			}
 		}
 		NOAMMetric nOAMVistor = new NOAMMetric();
@@ -36,15 +38,15 @@ public class WOCMetric extends AbstractMetric {
 
 	@Override
 	public void afterMetric() {
-		long val = 0; 
+		long val = 0;
 		Iterator iter = NOAMMap.entrySet().iterator();
 		while (iter.hasNext()) {
 			Map.Entry entry = (Map.Entry) iter.next();
-			val= (long) entry.getValue();
-			
+			val = (long) entry.getValue();
+
 		}
-		
-		long a = (long) (val/(double)totalPublicM * 100);
+
+		long a = (long) (val / (double) totalPublicM * 100);
 		WOCMMap.put(getPkgClassName(), a);
 		totalPublicM = 0;
 	}

@@ -16,7 +16,16 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.metric.model.*;
-
+/**
+ * <ul>
+ * <li>Name: TCC, Tight Class Cohesion</li>
+ * <li>Description: the relative number of method 
+ * pairs of a class that access in common at least
+ *  one attribute of the measured class</li>
+ * <li>Granularity: Class</li>
+ * <li>Default Values: -2 for Interface</li>
+ * </ul>
+ */
 public class TCCMetric extends AbstractMetric {
 	// 紧密类内聚：设一个类中有Ⅳ个公有方法；NP是共有方法对
 	// 的最大值，NP=[Ⅳ×(Ⅳ一1)]／2；NDc表示共有方法之间直
@@ -27,7 +36,7 @@ public class TCCMetric extends AbstractMetric {
 	private HashMap<String, Long> TCCMap = new HashMap<>();
 
 	public boolean visit(TypeDeclaration node) {
-
+		setPkgClassName(node);
 		FieldDeclaration[] fd = node.getFields();
 		for (FieldDeclaration fdTemp : fd) {
 			// int md = fdTemp.getModifiers();
@@ -150,4 +159,7 @@ public class TCCMetric extends AbstractMetric {
 		return TCCMap;
 	}
 
+	 public static void iii(){
+		 
+	 }
 }

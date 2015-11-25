@@ -16,7 +16,7 @@ import perfume.metric.visitor.CBOClassVisitor;
  * <li>Description: CBO for a class is a count of the number of other classes to
  * which it is coupled.</li>
  * <li>Granularity: Class</li>
- * <li>Default Values: </li>
+ * <li>Default Values: -2 Interface</li>
  * </ul>
  */
 public class CBOMetric extends AbstractMetricVisitor {
@@ -25,7 +25,13 @@ public class CBOMetric extends AbstractMetricVisitor {
 	private String currentClassName;
 
 	public boolean visit(TypeDeclaration node) {
-		String className = node.getName().toString();
+		setPkgClassName(node);
+		if (node.isInterface()) {
+			CBOMap.put(getPkgClassName(), -2l);
+			return true;
+		}
+		
+		String className = getPkgClassName();
 		currentClassName = className;
 		if (!CBOMap.containsKey(className))
 			CBOMap.put(className, 0l);
@@ -33,7 +39,7 @@ public class CBOMetric extends AbstractMetricVisitor {
 
 		node.accept(cboClassVisitor);
 		cboClassVisitor.getMetricResult();
-		return false;
+		return true;
 	}
 
 	@Override

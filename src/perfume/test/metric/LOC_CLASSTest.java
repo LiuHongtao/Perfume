@@ -12,7 +12,7 @@ public class LOC_CLASSTest {
 		MetricUtil.startMetric(
 				projectPath, 
 				measurement);
-		LogUtil.print(measurement.getMetricResult());
+		//LogUtil.print(measurement.getMetricResult());
 		LogUtil.print(measurement.getMetricResult().size());
 	}
 }

@@ -9,7 +9,7 @@ public class CBOTest {
 	public CBOTest(String projectPath) {
 		AbstractMetric measurement = new CBOMetric();
 		MetricUtil.startMetric(projectPath, measurement);
-		LogUtil.print(measurement.getMetricResult());
-		
+		//LogUtil.print(measurement.getMetricResult());
+		LogUtil.print(measurement.getMetricResult().size());
 	}
 }

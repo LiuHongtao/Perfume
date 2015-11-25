@@ -7,7 +7,14 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import perfume.metric.analyzer.SumJavaCode;
 import perfume.util.ast.JdtAstUtil;
-
+/**
+ * <ul>
+ * <li>Name: LOC, Line of Code Of Java File</li>
+ * <li>Description: Line of Code Of Java File.</li>
+ * <li>Granularity: Class</li>
+ * <li>Default Values: -2 for Interface</li>
+ * </ul>
+ */
 public class LOCMetric  extends AbstractMetricVisitor{
 	private HashMap<String, Long> LOCMetric = new HashMap<>();
 	private int noCommentCodeLine;
@@ -21,12 +28,12 @@ public class LOCMetric  extends AbstractMetricVisitor{
 //		long result = 0;
 //		
 //		if (node.isInterface()) {
-//			result = -2;
-//			LOCMetric.put(mPkgNameBuilder.toString(), result);
-//			return false;
+//			long result = -2;
+//			LOCMetric.put(getPkgClassName().toString(), result);
+//			return true;
 //		}
 //		
-		return true;
+		return false;
 	}
 	
 	@Override
@@ -42,7 +49,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 
 	@Override
 	public void afterMetric() {
-		
+		LOCMetric.put(getPkgClassName(), (long)noCommentCodeLine);
 //		System.out.println("FilePath:" + javaPath + "\tLOCtotal:" + totalLines + "\tlOJavaC:" + noCommentCodeLine
 //				+ "\tcommentLines:" + commentLines + "\tLOBlankL:" + blankLines);
 		
@@ -50,7 +57,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		LOCMetric.put(getPkgClassName(), (long)noCommentCodeLine);
+		
 		return LOCMetric;
 	}
 }

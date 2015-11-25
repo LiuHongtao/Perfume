@@ -9,7 +9,7 @@ public class NOATest {
 	public NOATest(String projectPath) {
 		AbstractMetric measurement = new NOAMetric();
 		MetricUtil.startMetric(projectPath, measurement);
-		LogUtil.print(measurement.getMetricResult());
+//		LogUtil.print(measurement.getMetricResult());
 		LogUtil.print(measurement.getMetricResult().size());
 	}
 }
