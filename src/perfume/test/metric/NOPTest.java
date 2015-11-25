@@ -2,13 +2,13 @@ package perfume.test.metric;
 
 import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.MetricUtil;
-import perfume.metric.NOAMMetric;
+import perfume.metric.NOPMetric;
 import perfume.util.LogUtil;
 
-public class NOAMTest {
-
-	public NOAMTest(String projectPath) {
-		AbstractMetricVisitor measurement = new NOAMMetric();
+public class NOPTest {
+	
+	public NOPTest(String projectPath) {
+		AbstractMetricVisitor measurement = new NOPMetric();
 		MetricUtil.startMetric(
 				projectPath, 
 				measurement);

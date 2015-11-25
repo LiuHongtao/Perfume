@@ -39,7 +39,7 @@ public class PARMetric extends AbstractMetricVisitor {
 			}
 		}
 		
-		return false;
+		return true;
 	}
 	
 	@Override
