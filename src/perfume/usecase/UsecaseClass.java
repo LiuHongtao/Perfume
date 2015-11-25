@@ -10,7 +10,7 @@ public class UsecaseClass implements UsecaseInterface {
 		System.out.println(asd.b);
 	}
 	
-	public void func() {
+	public long func(char as, char qw) {
 		int b = 5;
 		
 		do {
@@ -34,5 +34,7 @@ public class UsecaseClass implements UsecaseInterface {
 				
 			}
 		}
+		
+		return (long)b;
 	}
 }
