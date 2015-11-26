@@ -20,7 +20,6 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import perfume.util.StringUtil;
-import perfume.util.ast.MethodUtil;
 
 /**
  * collection of accessor in the whole project
@@ -35,16 +34,16 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 		return accessorSet;
 	}
 
-	private String mPkgName = "";
+//	private String mPkgName = "";
 	private HashSet<String> fieldsTypeSet = new HashSet<>();
 	private HashSet<String> fieldsNameSet = new HashSet<>();
 
 	@Override
 	public boolean visit(CompilationUnit node) {
-		PackageDeclaration pd = node.getPackage();
-		if (pd != null) {
-			mPkgName = node.getPackage().getName().toString();
-		}
+//		PackageDeclaration pd = node.getPackage();
+//		if (pd != null) {
+//			mPkgName = node.getPackage().getName().toString();
+//		}
 		
 		for (Object o: node.types()) {
 			if (o instanceof TypeDeclaration) {
@@ -60,6 +59,11 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 		return super.visit(node);
 	}
 
+	/**
+	 * collect all fields' type and name
+	 * @param className
+	 * @param fields
+	 */
 	private void visitField(String className, FieldDeclaration[] fields) {
 		for (FieldDeclaration field: fields) {
 			String fieldsType = field.getType().toString();
@@ -76,7 +80,7 @@ public class AccessorCollectionVisitor extends ASTVisitor {
 	private void visitAccessor(String className, MethodDeclaration[] methods) {
 		for (MethodDeclaration method: methods) {
 			if (method.isConstructor() || 
-					MethodUtil.isAbstract(method)) {
+					method.getBody() == null) {
 				continue;
 			}
 			

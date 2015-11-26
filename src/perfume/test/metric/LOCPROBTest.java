@@ -1,13 +1,13 @@
 package perfume.test.metric;
 
-import perfume.metric.AbstractMetric ;
+import perfume.metric.AbstractMetric;
 import perfume.metric.MetricUtil;
-import perfume.metric.WMCMetric;
+import perfume.metric.LOCPROBMetric;
 import perfume.util.LogUtil;
 
-public class WMCTest {
-	public WMCTest(String projectPath) {
-		AbstractMetric measurement = new WMCMetric();	
+public class LOCPROBTest {
+ public LOCPROBTest(String projectPath) {
+		AbstractMetric measurement = new LOCPROBMetric();	
 		MetricUtil.startMetric(
 				 projectPath, 
 				measurement);

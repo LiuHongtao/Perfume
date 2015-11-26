@@ -23,29 +23,32 @@ public class MAXNESTINGMetric extends AbstractMetricVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {	
 		setPkgClassName(node);
-		MethodDeclaration[] methods = node.getMethods();
-		for (MethodDeclaration method: methods) {
-			String methodName = StringUtil.stringConnection(
-					getPkgClassName(), ".",
-					method.getName().toString());
-			Block body = method.getBody();
-			if (body == null) {
-				MAXNESTINGMap.put(
-						methodName, 
-						-1l);
-			}
-			else {
-				MAXNESTINGMethodVisitor visitor = new MAXNESTINGMethodVisitor();
-				body.accept(visitor);
-				MAXNESTINGMap.put(
-						methodName, 
-						visitor.getMAXNESTING());
-			}
+		
+		return true;
+	}
+	
+	@Override
+	public boolean visit(MethodDeclaration node) {
+		String methodName = StringUtil.stringConnection(
+				getPkgClassName(), ".",
+				node.getName().toString());
+		Block body = node.getBody();
+		if (body == null) {
+			MAXNESTINGMap.put(
+					methodName, 
+					-1l);
+		}
+		else {
+			MAXNESTINGMethodVisitor visitor = new MAXNESTINGMethodVisitor();
+			body.accept(visitor);
+			MAXNESTINGMap.put(
+					methodName, 
+					visitor.getMAXNESTING());
 		}
 		
 		return false;
 	}
-	
+
 	@Override
 	public HashMap<String, Long> getMetricResult() {
 		return MAXNESTINGMap;

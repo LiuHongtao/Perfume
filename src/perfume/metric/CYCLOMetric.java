@@ -18,6 +18,7 @@ import org.eclipse.jdt.core.dom.WhileStatement;
 
 import perfume.metric.model.MethodParam;
 import perfume.util.ast.JdtAstUtil;
+
 /**
  * <ul>
  * <li>Name: CYCLO, McCabe’s CYCLOmatic complexity</li>
@@ -26,29 +27,29 @@ import perfume.util.ast.JdtAstUtil;
  * <li>Default Values: Total number of CYCLO of a class</li>
  * </ul>
  */
-public class CYCLOMetric extends AbstractMetric {
+public class CYCLOMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CYCLOMetric = new HashMap<>();
 	private String javaPath;
 	private CompilationUnit compUnit;
-	private int cyclomatic = 1 ,totalCYCLO;
+	private int cyclomatic = 1, totalCYCLO;
 	private String source;
 	private MethodParam param;
-		
+	private boolean isVisited = false;
 
-	
-	public boolean visit(TypeDeclaration node){
-		setPkgClassName(node);
+	public boolean visit(TypeDeclaration node) {
+		if (!isVisited)
+			setPkgClassName(node);
 		long result = 0;
-		
+
 		if (node.isInterface()) {
 			result = -2;
 			CYCLOMetric.put(getPkgClassName(), result);
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	public boolean visit(CatchClause node) {
 		cyclomatic++;
 		return true;
@@ -123,66 +124,62 @@ public class CYCLOMetric extends AbstractMetric {
 
 	public boolean preVisit2(ASTNode node) {
 		if ((node instanceof MethodDeclaration) && (param != null)) {
-//			param.setMethodCyclomatic(cyclomatic);
-//			System.out.println(param.getMethodName()+"\t"+param.getMethodCyclomatic());
+			// param.setMethodCyclomatic(cyclomatic);
+			// System.out.println(param.getMethodName()+"\t"+param.getMethodCyclomatic());
 			cyclomatic = 1;
 		}
 		return true;
 
 	}
-	
-	public void endVisit(MethodDeclaration node) {
-		
-			param.setMethodCyclomatic(cyclomatic);
-			//System.out.println("MethodName:"+param.getMethodName()+"\t"+param.getMethodCyclomatic());
-			totalCYCLO+=cyclomatic;
-			cyclomatic = 1;
-		
 
+	public void endVisit(MethodDeclaration node) {
+
+		param.setMethodCyclomatic(cyclomatic);
+		// System.out.println("MethodName:"+param.getMethodName()+"\t"+param.getMethodCyclomatic());
+		totalCYCLO += cyclomatic;
+		cyclomatic = 1;
 
 	}
 
 	public boolean visit(MethodDeclaration node) {
 
-
 		param = new MethodParam();
 		param.setPath(javaPath);
 		param.setMethodName(node.getName().toString());
 		param.setStartLineNum(compUnit.getLineNumber(node.getStartPosition()));
-		param.setEndLineNum(compUnit.getLineNumber(node.getStartPosition()
-				+ node.getLength()));
+		param.setEndLineNum(compUnit.getLineNumber(node.getStartPosition() + node.getLength()));
 
-		
 		return true;
 	}
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
 		this.javaPath = javaPath;
+		isVisited = false;
 		try {
 			source = JdtAstUtil.getSource(javaPath);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(javaPath);
+		// System.out.println(javaPath);
 		this.compUnit = compUnit;
 	}
 
 	@Override
 	public void afterMetric() {
 		source = "";
-		//System.out.println("Total CYCLO of this java file :"+totalCYCLO);
-		CYCLOMetric.put(getPkgClassName(), (long)totalCYCLO);
+		// System.out.println("Total CYCLO of this java file :"+totalCYCLO);
+		CYCLOMetric.put(getPkgClassName(), (long) totalCYCLO);
 		cyclomatic = 1;
 		totalCYCLO = 0;
 	}
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		
+
 		return CYCLOMetric;
 	}
 
 }
-

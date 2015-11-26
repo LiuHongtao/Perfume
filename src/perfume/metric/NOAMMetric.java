@@ -31,7 +31,8 @@ public class NOAMMetric extends AbstractMetricVisitor {
 	
 	@Override
 	public boolean visit(TypeDeclaration node) {	
-	
+		setPkgClassName(node);
+		
 		// collect fields information
 		HashSet<String> fieldsTypeSet = new HashSet<>();
 		HashSet<String> fieldsNameSet = new HashSet<>();
@@ -44,17 +45,19 @@ public class NOAMMetric extends AbstractMetricVisitor {
 			}
 		}
 		
+		long result = 0;
 		if (fieldsNameSet.size() > 0) {
-			setPkgClassName(node);
-			NOAMMap.put(
-					getPkgClassName(), 
-					countNOAM(
-							fieldsTypeSet, 
-							fieldsNameSet, 
-							node.getMethods()));
-		}	
+			result = countNOAM(
+					fieldsTypeSet, 
+					fieldsNameSet, 
+					node.getMethods());
+		}
 		
-		return false;
+		NOAMMap.put(
+				getPkgClassName(), 
+				result);
+		
+		return true;
 	}
 	
 	private long countNOAM(HashSet<String> fieldsTypeSet, 
@@ -63,7 +66,7 @@ public class NOAMMetric extends AbstractMetricVisitor {
 		long result = 0;		
 		for (MethodDeclaration method: methods) {
 			if (method.isConstructor() || 
-					MethodUtil.isAbstract(method)) {
+					method.getBody() == null) {
 				continue;
 			}
 			

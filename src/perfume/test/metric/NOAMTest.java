@@ -12,6 +12,7 @@ public class NOAMTest {
 		MetricUtil.startMetric(
 				projectPath, 
 				measurement);
-		LogUtil.print(measurement.getMetricResult());
+//		LogUtil.print(measurement.getMetricResult());
+		LogUtil.print(measurement.getMetricResult().size());
 	}
 }

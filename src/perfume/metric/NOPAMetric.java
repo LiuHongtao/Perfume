@@ -12,7 +12,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
  * <ul>
  * <li>Name: NOPA, Number Of Public Attribute</li>
  * <li>Description: The Number of Public Attributes, which are not static and constant, 
- * of a class. Don't measured for Abstract classes, and inner classes?</li>
+ * of a class.</li>
  * <li>Granularity: Class</li>
  * <li>Default Values: -2 for Interface</li>
  * </ul>
@@ -23,7 +23,7 @@ public class NOPAMetric extends AbstractMetricVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {
 		countNOPA(node);		
-		return false;
+		return true;
 	}
 	
 	private void countNOPA(TypeDeclaration node) {
