@@ -17,8 +17,6 @@ import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
-import perfume.util.ast.MethodUtil;
-
 /**
  * <ul>
  * <li>Name: NOAM, Number Of Accessor Methods</li>

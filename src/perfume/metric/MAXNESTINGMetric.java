@@ -8,7 +8,6 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import perfume.metric.visitor.MAXNESTINGMethodVisitor;
 import perfume.util.StringUtil;
-import perfume.util.ast.MethodUtil;
 
 /**
  * <ul>

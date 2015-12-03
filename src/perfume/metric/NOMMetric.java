@@ -1,11 +1,10 @@
 package perfume.metric;
 
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-
-import perfume.util.ast.MethodUtil;
 
 /**
  * <ul>
@@ -37,7 +36,7 @@ public class NOMMetric extends AbstractMetricVisitor {
 		result = node.getMethods().length;
 		
 		for (MethodDeclaration method: node.getMethods()) {
-			if (MethodUtil.isAbstract(method)) {
+			if (Modifier.isAbstract(method.getModifiers())) {
 				result--;
 			}
 		}
