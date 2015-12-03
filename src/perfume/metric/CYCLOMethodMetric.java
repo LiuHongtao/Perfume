@@ -17,6 +17,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
 import perfume.metric.model.MethodParam;
+import perfume.util.StringUtil;
 import perfume.util.ast.JdtAstUtil;
 
 public class CYCLOMethodMetric extends AbstractMetricVisitor {
@@ -24,21 +25,12 @@ public class CYCLOMethodMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CYCLOMethodMetric = new HashMap<>();
 	private String javaPath;
 	private CompilationUnit compUnit;
-	private int cyclomatic = 1, totalCYCLO;
+	private int cyclomatic = 1;
 	private String source;
 	private MethodParam param;
-	private boolean isVisited = false;
 
 	public boolean visit(TypeDeclaration node) {
-		if (!isVisited)
-			setPkgClassName(node);
-		long result = 0;
-
-		if (node.isInterface()) {
-			result = -2;
-			CYCLOMethodMetric.put(getPkgClassName(), result);
-			return false;
-		}
+		setPkgClassName(node);
 
 		return true;
 	}
@@ -103,7 +95,6 @@ public class CYCLOMethodMetric extends AbstractMetricVisitor {
 			int start = ex.getStartPosition();
 			int end = ex.getStartPosition() + ex.getLength();
 			String expression = source.substring(start, end);
-			// System.out.print(expression);
 			char[] chars = expression.toCharArray();
 			for (int i = 0; i < chars.length - 1; i++) {
 				char next = chars[i];
@@ -117,8 +108,6 @@ public class CYCLOMethodMetric extends AbstractMetricVisitor {
 
 	public boolean preVisit2(ASTNode node) {
 		if ((node instanceof MethodDeclaration) && (param != null)) {
-			// param.setMethodCyclomatic(cyclomatic);
-			// System.out.println(param.getMethodName()+"\t"+param.getMethodCyclomatic());
 			cyclomatic = 1;
 		}
 		return true;
@@ -128,9 +117,10 @@ public class CYCLOMethodMetric extends AbstractMetricVisitor {
 	public void endVisit(MethodDeclaration node) {
 		//方法度量结束 输出结果到CYCLOMethodMetric中
 		param.setMethodCyclomatic(cyclomatic);
-		// System.out.println("MethodName:"+param.getMethodName()+"\t"+param.getMethodCyclomatic());
-		CYCLOMethodMetric.put(getPkgClassName()+"."+param.getMethodName(), (long) cyclomatic);
-		totalCYCLO += cyclomatic;
+		String methodName = StringUtil.stringConnection(
+				getPkgClassName(), ".",
+				node.getName().toString());
+		CYCLOMethodMetric.put(methodName, (long) cyclomatic);
 		cyclomatic = 1;
 
 	}
@@ -150,24 +140,18 @@ public class CYCLOMethodMetric extends AbstractMetricVisitor {
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		super.beforeMetric(javaPath, compUnit);
 		this.javaPath = javaPath;
-		isVisited = false;
 		try {
 			source = JdtAstUtil.getSource(javaPath);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// System.out.println(javaPath);
 		this.compUnit = compUnit;
 	}
 
 	@Override
 	public void afterMetric() {
 		source = "";
-		// System.out.println("Total CYCLO of this java file :"+totalCYCLO);
-		//CYCLOMethodMetric.put(getPkgClassName(), (long) totalCYCLO);
 		cyclomatic = 1;
-		totalCYCLO = 0;
 	}
 
 	@Override
