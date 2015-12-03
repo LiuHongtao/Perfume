@@ -4,7 +4,7 @@ import perfume.test.metric.*;
 
 public class Entrance {
 	public static void main(String[] args) {
-		//new TCCTest("/Users/lht-Mac/Documents/git/Perfume/src/perfume/usecase");
-		new LOCTest("D:\\Qualitas Corpus\\066-jre-1.6.0");
+		new NOAVTest("D:\\Qualitas Corpus\\112-xmojosrc_5.0.0");
+//		new LongMethod("D:\\Qualitas Corpus\\", "112-xmojosrc_5.0.0");
 	}
 }
