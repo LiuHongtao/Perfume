@@ -111,4 +111,9 @@ public class LCOMMetric extends AbstractMetric {
 		return LCOMMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "LCOM";
+	}
+
 }

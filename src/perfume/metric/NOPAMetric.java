@@ -61,5 +61,10 @@ public class NOPAMetric extends AbstractMetricVisitor {
 	@Override
 	public HashMap<String, Long> getMetricResult() {
 		return NOPAMap;
+	}
+
+	@Override
+	public String getMetricName() {
+		return "NOPA";
 	}	
 }

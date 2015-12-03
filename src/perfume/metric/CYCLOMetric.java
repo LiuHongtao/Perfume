@@ -182,4 +182,9 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 		return CYCLOMetric;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "CYCLO";
+	}
+
 }

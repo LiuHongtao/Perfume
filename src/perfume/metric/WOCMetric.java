@@ -9,7 +9,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-public class WOCMetric extends AbstractMetric {
+public class WOCMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> WOCMMap = new HashMap<>();
 	private HashMap<String, Long> NOAMMap = null;
 	private long totalPublicM = 0;
@@ -32,12 +32,9 @@ public class WOCMetric extends AbstractMetric {
 	}
 
 	@Override
-	public void beforeMetric(String projectPath, CompilationUnit compUnit) {
-		setPkgName(compUnit);
-	}
-
-	@Override
 	public void afterMetric() {
+		super.afterMetric();
+		
 		long val = 0;
 		Iterator iter = NOAMMap.entrySet().iterator();
 		while (iter.hasNext()) {
@@ -53,8 +50,12 @@ public class WOCMetric extends AbstractMetric {
 
 	@Override
 	public HashMap<String, Long> getMetricResult() {
-		// TODO Auto-generated method stub
 		return WOCMMap;
+	}
+
+	@Override
+	public String getMetricName() {
+		return "WOC";
 	}
 
 }

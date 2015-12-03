@@ -11,6 +11,8 @@ import perfume.util.StringUtil;
 
 public abstract class AbstractMetric extends ASTVisitor {
 
+	public abstract String getMetricName();
+	
 	/**
 	 * Before the measurement started
 	 */

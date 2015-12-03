@@ -9,6 +9,7 @@ public abstract class AbstractMetricVisitor extends AbstractMetric {
 		setPkgName(compUnit);
 	}	
 	
+	@Override
 	public void afterMetric() {
 	}
 }

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.SimpleType;
 
 import perfume.metric.AbstractMetricVisitor;
 
-public class CBOClassVisitor extends AbstractMetricVisitor {
+public class CBOClassVisitor extends ASTVisitor {
 	private HashMap<String, Long> CBOOfClassMap;
 	private List<String> exsit = new ArrayList<String>();
 	private String currentClassName;
@@ -43,7 +44,6 @@ public class CBOClassVisitor extends AbstractMetricVisitor {
 		return false;
 	}
 
-	@Override
 	public HashMap<String, Long> getMetricResult() {
 //		if(currentClassName.equalsIgnoreCase("TagRule")){
 //			for(String s : exsit)

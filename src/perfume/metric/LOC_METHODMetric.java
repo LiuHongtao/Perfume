@@ -82,4 +82,9 @@ public class LOC_METHODMetric extends AbstractMetricVisitor {
 		 
 		return LOC_METHOD;
 	}
+
+	@Override
+	public String getMetricName() {
+		return "LOC_METHOD";
+	}
 }

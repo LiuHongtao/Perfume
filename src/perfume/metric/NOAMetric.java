@@ -38,4 +38,9 @@ public class NOAMetric extends AbstractMetricVisitor {
 		return NOAMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "NOA";
+	}
+
 }

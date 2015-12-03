@@ -74,4 +74,9 @@ public class CBOMetric extends AbstractMetricVisitor {
 		return CBOMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "CBO";
+	}
+
 }

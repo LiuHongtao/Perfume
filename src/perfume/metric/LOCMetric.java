@@ -60,4 +60,9 @@ public class LOCMetric  extends AbstractMetricVisitor{
 		
 		return LOCMetric;
 	}
+
+	@Override
+	public String getMetricName() {
+		return "LOC";
+	}
 }

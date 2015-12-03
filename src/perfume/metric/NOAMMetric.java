@@ -110,4 +110,9 @@ public class NOAMMetric extends AbstractMetricVisitor {
 		return NOAMMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "NOAM";
+	}
+
 }

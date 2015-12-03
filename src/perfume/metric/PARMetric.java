@@ -47,4 +47,9 @@ public class PARMetric extends AbstractMetricVisitor {
 		return PARMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "PAR";
+	}
+
 }

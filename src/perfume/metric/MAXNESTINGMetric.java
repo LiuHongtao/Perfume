@@ -53,4 +53,9 @@ public class MAXNESTINGMetric extends AbstractMetricVisitor {
 		return MAXNESTINGMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "MAXNESTING";
+	}
+
 }

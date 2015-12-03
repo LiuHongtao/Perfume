@@ -26,7 +26,7 @@ import perfume.metric.model.*;
  * <li>Default Values: -2 for Interface</li>
  * </ul>
  */
-public class TCCMetric extends AbstractMetric {
+public class TCCMetric extends AbstractMetricVisitor {
 	// 紧密类内聚：设一个类中有Ⅳ个公有方法；NP是共有方法对
 	// 的最大值，NP=[Ⅳ×(Ⅳ一1)]／2；NDc表示共有方法之间直
 	// 接关联的方法对数目，则Tcc=NDc／NP
@@ -143,23 +143,20 @@ public class TCCMetric extends AbstractMetric {
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
+		
 		attributeSet = new HashSet<String>();
 		methodList = new HashSet<MethodParam>();
 
 	}
 
 	@Override
-	public void afterMetric() {
-
-	}
-
-	@Override
 	public HashMap<String, Long> getMetricResult() {
-
 		return TCCMap;
 	}
 
-	 public static void iii(){
-		 
-	 }
+	@Override
+	public String getMetricName() {
+		return "TCC";
+	}
 }

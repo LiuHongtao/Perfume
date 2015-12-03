@@ -49,4 +49,9 @@ public class NOMMetric extends AbstractMetricVisitor {
 		return NOMMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "NOM";
+	}
+
 }

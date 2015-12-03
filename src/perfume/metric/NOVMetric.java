@@ -44,4 +44,9 @@ public class NOVMetric extends AbstractMetricVisitor {
 		return NOVMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "NOV";
+	}
+
 }

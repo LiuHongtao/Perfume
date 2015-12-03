@@ -57,4 +57,9 @@ public class ATFDMetric extends AbstractMetricVisitor {
 		return ATFDMap;
 	}
 
+	@Override
+	public String getMetricName() {
+		return "ATFD";
+	}
+
 }
