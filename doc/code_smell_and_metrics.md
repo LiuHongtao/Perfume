@@ -35,7 +35,7 @@
 | 021 | NOP | Number Of Properties? |  | NOA |
 | 022 | NOP* | Number Of Parameters |  | PAR |
 | 023 | NOPA | Number Of Public Attributes | The Number of Public Attributes, which are not static and constant, of a class. | ![progress](http://progressed.io/bar/100?title=lht) |
-| 024 | NOV | Number Of Variables per class | Temporary Variables | ![progress](http://progressed.io/bar/100?title=lht) |
+| 024 | NOV | Number Of Variables per class | Temporary variables, method parameters | ![progress](http://progressed.io/bar/100?title=lht) |
 | 025 | PAR | total number of PARameters in the selected scope |  | ![progress](http://progressed.io/bar/100?title=lht) |
 | 026 | TCC | Tight Class Cohesion | the relative number of method pairs of a class that access in common at least one attribute of the measured class | ![progress](http://progressed.io/bar/100?title=neo) |
 | 027 | WMC | Weighted Methods per Class | A class's weighted methods per class WMC metric is simply the sum of the complexities of its methods. As a measure of complexity we can use the cyclomatic complexity, or we can abritrarily assign a complexity value of 1 to each method. The ckjm program assigns a complexity value of 1 to each method, and therefore the value of the WMC is equal to the number of methods in the class. |  ![progress](http://progressed.io/bar/100?title=neo) |

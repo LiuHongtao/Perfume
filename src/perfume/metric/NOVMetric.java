@@ -11,7 +11,7 @@ import perfume.metric.visitor.VarInMethodVisitor;
 /**
  * <ul>
  * <li>Name: NOV, Number Of Variables</li>
- * <li>Description: Include temporary variables, ?</li>
+ * <li>Description: Include temporary variables, method parameters</li>
  * <li>Granularity: Class</li>
  * </ul>
  */
@@ -26,13 +26,14 @@ public class NOVMetric extends AbstractMetricVisitor {
 		VarInMethodVisitor visitor = new VarInMethodVisitor();
 		
 		for (MethodDeclaration method: node.getMethods()) {
+			result += method.parameters().size();
 			Block body = method.getBody();
 			if (body != null) {
 				body.accept(visitor);
 			}
 		}
 		
-		result = visitor.getCount();
+		result += visitor.getCount();
 		
 		NOVMap.put(getPkgClassName(), result);
 		
