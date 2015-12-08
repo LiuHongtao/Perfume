@@ -4,6 +4,7 @@ import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.CBOMetric;
 import perfume.metric.CYCLOMetric;
 import perfume.metric.LOCMetric;
+import perfume.metric.LOC_CLASSMetric;
 import perfume.metric.MetricUtil;
 import perfume.metric.NOAMetric;
 import perfume.metric.NOMMetric;
@@ -15,7 +16,7 @@ public class LazyClass extends AbstractCodeSmell {
 	public void makeTrainingSet(String projectDir, String projectName) {
 		AbstractMetricVisitor measurement_1 = new NOMMetric();
 		AbstractMetricVisitor measurement_2 = new CYCLOMetric();
-		AbstractMetricVisitor measurement_3 = new LOCMetric();
+		AbstractMetricVisitor measurement_3 = new LOC_CLASSMetric();
 		AbstractMetricVisitor measurement_4 = new CBOMetric();
 		AbstractMetricVisitor measurement_5 = new NOAMetric();
 		

@@ -33,7 +33,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 //			return true;
 //		}
 //		
-		return false;
+		return true;
 	}
 	
 	@Override
