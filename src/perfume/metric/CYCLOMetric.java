@@ -17,6 +17,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.WhileStatement;
 
 import perfume.metric.model.MethodParam;
+import perfume.metric.visitor.CYCLOVisitor;
 import perfume.util.ast.JdtAstUtil;
 
 /**
@@ -31,149 +32,69 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 	private HashMap<String, Long> CYCLOMetric = new HashMap<>();
 	private String javaPath;
 	private CompilationUnit compUnit;
-	private int cyclomatic = 1, totalCYCLO;
+
 	private String source;
 	private MethodParam param;
-	private boolean isVisited = false;
-
+	private boolean isVisited = false, isInterface = false;
+	private CYCLOVisitor cycloVisitor;
+	private long cyclomatic = 1;
 	public boolean visit(TypeDeclaration node) {
-		if (!isVisited)
+//		if (!isVisited) {
+//			isVisited = true;
 			setPkgClassName(node);
-		long result = 0;
+//		}
+
+		long result;
 
 		if (node.isInterface()) {
+			isInterface = true;
 			result = -2;
 			CYCLOMetric.put(getPkgClassName(), result);
 			return false;
 		}
-
-		return true;
-	}
-
-	public boolean visit(CatchClause node) {
-		cyclomatic++;
-		return true;
-	}
-
-	public boolean visit(ConditionalExpression node) {
-		cyclomatic++;
-		inspectExpression(node.getExpression());
-		return true;
-	}
-
-	public boolean visit(DoStatement node) {
-		cyclomatic++;
-		inspectExpression(node.getExpression());
-		return true;
-	}
-
-	public boolean visit(ForStatement node) {
-		cyclomatic++;
-		inspectExpression(node.getExpression());
-		return true;
-	}
-
-	public boolean visit(IfStatement node) {
-		cyclomatic++;
-		inspectExpression(node.getExpression());
-		return true;
-	}
-
-	public boolean visit(SwitchCase node) {
-		if (!node.isDefault())
-			cyclomatic++;
-		return true;
-	}
-
-	public boolean visit(WhileStatement node) {
-		cyclomatic++;
-		inspectExpression(node.getExpression());
-		return true;
-	}
-
-	public boolean visit(ExpressionStatement exs) {
-		inspectExpression(exs.getExpression());
-		return false;
-	}
-
-	public int getCyclomatic() {
-		return cyclomatic;
-	}
-
-	/**
-	 * Count occurrences of && and || (conditional and or) Fix for BUG 740253
-	 * 
-	 * @param ex
-	 */
-	private void inspectExpression(Expression ex) {
-		if (ex != null) {
-			int start = ex.getStartPosition();
-			int end = ex.getStartPosition() + ex.getLength();
-			String expression = source.substring(start, end);
-			// System.out.print(expression);
-			char[] chars = expression.toCharArray();
-			for (int i = 0; i < chars.length - 1; i++) {
-				char next = chars[i];
-				if ((next == '&' || next == '|') && (next == chars[i + 1])) {
-
-					cyclomatic++;
-				}
+		long totalCYCLO = 0;
+		MethodDeclaration[] mds = node.getMethods();
+		for (MethodDeclaration md : mds) {
+			String methodName = getPkgClassName()+"."+md.getName().toString();
+//			System.out.println(methodName+" "+CYCLOMethodMetric.get(methodName));
+			try{
+				md.accept(cycloVisitor);
+				cyclomatic = cycloVisitor.getMetricResult();
+//				System.out.println(cyclomatic);
+				totalCYCLO+=cyclomatic;
+//				System.out.println(totalCYCLO);
+			}catch(Exception e){
+				System.out.println(node.getName().toString()+" "+methodName);
+				e.printStackTrace();
 			}
+			
+			
 		}
-	}
-
-	public boolean preVisit2(ASTNode node) {
-		if ((node instanceof MethodDeclaration) && (param != null)) {
-			// param.setMethodCyclomatic(cyclomatic);
-			// System.out.println(param.getMethodName()+"\t"+param.getMethodCyclomatic());
-			cyclomatic = 1;
-		}
-		return true;
-
-	}
-
-	public void endVisit(MethodDeclaration node) {
-
-		param.setMethodCyclomatic(cyclomatic);
-		// System.out.println("MethodName:"+param.getMethodName()+"\t"+param.getMethodCyclomatic());
-		totalCYCLO += cyclomatic;
-		cyclomatic = 1;
-
-	}
-
-	public boolean visit(MethodDeclaration node) {
-
-		param = new MethodParam();
-		param.setPath(javaPath);
-		param.setMethodName(node.getName().toString());
-		param.setStartLineNum(compUnit.getLineNumber(node.getStartPosition()));
-		param.setEndLineNum(compUnit.getLineNumber(node.getStartPosition() + node.getLength()));
-
+		CYCLOMetric.put(getPkgClassName(), totalCYCLO);
 		return true;
 	}
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
 		super.beforeMetric(javaPath, compUnit);
+		cycloVisitor = new CYCLOVisitor();
+		cycloVisitor.beforeMetric(javaPath, compUnit);
+
 		this.javaPath = javaPath;
-		isVisited = false;
-		try {
-			source = JdtAstUtil.getSource(javaPath);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// System.out.println(javaPath);
+		
 		this.compUnit = compUnit;
 	}
 
 	@Override
 	public void afterMetric() {
 		source = "";
-		// System.out.println("Total CYCLO of this java file :"+totalCYCLO);
-		CYCLOMetric.put(getPkgClassName(), (long) totalCYCLO);
-		cyclomatic = 1;
-		totalCYCLO = 0;
+		// System.out.println(getPkgClassName()+totalCYCLO);
+//		if (!isInterface) {
+//			CYCLOMetric.put(getPkgClassName(), (long) totalCYCLO);
+//		}
+		isInterface = false;
+		
+		
 	}
 
 	@Override
