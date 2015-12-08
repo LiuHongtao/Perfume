@@ -30,6 +30,10 @@ public class NOAMMetric extends AbstractMetricVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {	
 		setPkgClassName(node);
+		if (node.isInterface()) {
+			NOAMMap.put(getPkgClassName(), -2l);
+			return true;
+		}
 		
 		// collect fields information
 		HashSet<String> fieldsTypeSet = new HashSet<>();

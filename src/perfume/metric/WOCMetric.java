@@ -16,6 +16,11 @@ public class WOCMetric extends AbstractMetricVisitor {
 
 	public boolean visit(TypeDeclaration node) {
 		setPkgClassName(node);
+		if (node.isInterface()) {
+
+			WOCMMap.put(getPkgClassName(), -2l);
+			return true;
+		}
 		MethodDeclaration[] mds = node.getMethods();
 		for (MethodDeclaration md : mds) {
 			int modifiersInt = md.getModifiers();
@@ -27,14 +32,14 @@ public class WOCMetric extends AbstractMetricVisitor {
 		NOAMMetric nOAMVistor = new NOAMMetric();
 		node.accept(nOAMVistor);
 		NOAMMap = nOAMVistor.getMetricResult();
-		return false;
+		return true;
 
 	}
 
 	@Override
 	public void afterMetric() {
 		super.afterMetric();
-		
+
 		long val = 0;
 		Iterator iter = NOAMMap.entrySet().iterator();
 		while (iter.hasNext()) {

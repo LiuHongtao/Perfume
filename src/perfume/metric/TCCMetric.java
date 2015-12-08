@@ -37,6 +37,11 @@ public class TCCMetric extends AbstractMetricVisitor {
 
 	public boolean visit(TypeDeclaration node) {
 		setPkgClassName(node);
+		if (node.isInterface()) {
+			
+			TCCMap.put(getPkgClassName(), -2l);
+			return true;
+		}
 		FieldDeclaration[] fd = node.getFields();
 		for (FieldDeclaration fdTemp : fd) {
 			// int md = fdTemp.getModifiers();
@@ -56,7 +61,7 @@ public class TCCMetric extends AbstractMetricVisitor {
 		}
 		TCCMap.put(node.getName().getIdentifier(), (long)getResult());
 
-		return false;
+		return true;
 
 	}
 

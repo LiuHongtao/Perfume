@@ -50,7 +50,7 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 			isInterface = true;
 			result = -2;
 			CYCLOMetric.put(getPkgClassName(), result);
-			return false;
+			return true;
 		}
 		long totalCYCLO = 0;
 		MethodDeclaration[] mds = node.getMethods();
