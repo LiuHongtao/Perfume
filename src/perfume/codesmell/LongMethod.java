@@ -15,7 +15,9 @@ public class LongMethod extends AbstractCodeSmell{
 		AbstractMetricVisitor measurement_2 = new CYCLOMethodMetric();
 		AbstractMetricVisitor measurement_3 = new MAXNESTINGMetric();
 		
-		MetricUtil.startMetric(projectDir + projectName, measurement_1, measurement_2, measurement_3);
+		MetricUtil.startMetric(
+				projectDir + projectName, 
+				measurement_1, measurement_2, measurement_3);
 		
 		CSVUtil.outputToCSV(
 				RESULT_DIR + getCodeSmellName() + "\\", 

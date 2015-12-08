@@ -44,13 +44,13 @@ public class CBOMetric extends AbstractMetricVisitor {
 
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
-		// TODO Auto-generated method stub
+		super.beforeMetric(javaPath, compUnit);
 
 	}
 
 	@Override
 	public void afterMetric() {
-
+		super.afterMetric();
 	}
 
 	public void combineMap() {

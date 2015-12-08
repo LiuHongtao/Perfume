@@ -38,6 +38,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 	
 	@Override
 	public void beforeMetric(String javaPath, CompilationUnit compUnit) {
+		super.beforeMetric(javaPath, compUnit);
 		this.javaPath = javaPath;
 		int[] result = SumJavaCode.LineOfCode(JdtAstUtil.getFile(javaPath));
 		noCommentCodeLine = result[0];
@@ -49,6 +50,7 @@ public class LOCMetric  extends AbstractMetricVisitor{
 
 	@Override
 	public void afterMetric() {
+		super.afterMetric();
 		LOCMetric.put(getPkgClassName(), (long)noCommentCodeLine);
 //		System.out.println("FilePath:" + javaPath + "\tLOCtotal:" + totalLines + "\tlOJavaC:" + noCommentCodeLine
 //				+ "\tcommentLines:" + commentLines + "\tLOBlankL:" + blankLines);
