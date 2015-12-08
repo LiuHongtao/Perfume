@@ -8,8 +8,9 @@ import perfume.metric.MetricUtil;
 import perfume.util.CSVUtil;
 
 public class LongMethod extends AbstractCodeSmell{
-	
-	public LongMethod(String projectDir, String projectName) {
+
+	@Override
+	public void makeTrainingSet(String projectDir, String projectName) {
 		AbstractMetricVisitor measurement_1 = new LOC_METHODMetric();
 		AbstractMetricVisitor measurement_2 = new CYCLOMethodMetric();
 		AbstractMetricVisitor measurement_3 = new MAXNESTINGMetric();

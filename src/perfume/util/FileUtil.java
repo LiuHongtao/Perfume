@@ -38,7 +38,7 @@ public class FileUtil {
     		return;
     	}
     	
-    	File[]  fileList = dir.listFiles();
+    	File[] fileList = dir.listFiles();
     	
     	for (File file: fileList) {
     		String path = file.getAbsolutePath();
@@ -51,4 +51,17 @@ public class FileUtil {
     	}
     }
     
+	public static ArrayList<String> getAllProjectName(String dirName) {
+		File dir = new File(dirName);
+		File[] fileList = dir.listFiles();
+		ArrayList<String> projectNameList = new ArrayList<>();
+    	
+    	for (File file: fileList) {
+    		if (file.isDirectory()){
+    			projectNameList.add(file.getName());
+    		}
+    	}
+    	
+    	return projectNameList;
+	}
 }
