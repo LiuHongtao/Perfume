@@ -8,24 +8,52 @@ public class FileUtil {
 	private static final String FILES_COUNT = "!!!!! files count: %s";
 	private static final String DIR_NOT_EXIST = "????? directory %s not exist";
 	
-	private static ArrayList<String> filePath;
+	private static ArrayList<String> filePathList;
 	
-	public static void showAllJavaFilePath(String dirName) {
-		getAllJavaFilePath(dirName);
+	public static ArrayList<String> getAllTestJavaFilePath(String dirName) {
+		filePathList = new ArrayList<String>();
+		getTestDirPath(dirName);
 		
-		for (String path: filePath) {
+		for (String path: filePathList) {
 			LogUtil.print(path);
 		}
 		
 		LogUtil.print(
 				String.format(
-						FILES_COUNT, filePath.size()));
+						FILES_COUNT, filePathList.size()));
+		
+		return filePathList;
 	}
 	
+	private static void getTestDirPath(String dirName){ 
+    	File dir = new File(dirName);
+    	
+    	if (!dir.exists()) {
+    		LogUtil.print(
+    				String.format(
+    						DIR_NOT_EXIST, dirName));    		
+    		return;
+    	}
+    	
+    	File[] fileList = dir.listFiles();
+    	
+    	for (File file: fileList) {
+    		String path = file.getAbsolutePath();
+    		if (file.isDirectory()){
+    			if (file.getName().contains("test")){
+    				filePathList.add(file.getAbsolutePath());
+    			}
+    			else {
+    				getTestDirPath(path);
+    			}
+    		}
+    	}
+    }
+	
 	public static ArrayList<String> getAllJavaFilePath(String dirName) {
-		filePath = new ArrayList<String>();
+		filePathList = new ArrayList<String>();
 		getJavaFile(dirName);
-		return filePath;
+		return filePathList;
 	}
 	
 	private static void getJavaFile(String dirName){ 
@@ -43,7 +71,7 @@ public class FileUtil {
     	for (File file: fileList) {
     		String path = file.getAbsolutePath();
     		if (path.endsWith(".java")) {
-    			filePath.add(file.getAbsolutePath());
+    			filePathList.add(file.getAbsolutePath());
             }
     		else if (file.isDirectory()){
     			getJavaFile(path);
@@ -63,5 +91,51 @@ public class FileUtil {
     	}
     	
     	return projectNameList;
+	}
+	
+	//删除文件夹
+	//param folderPath 文件夹完整绝对路径
+	public static void delFolder(String folderPath) {
+		try {
+			delAllFile(folderPath); //删除完里面所有内容
+			String filePath = folderPath;
+			filePath = filePath.toString();
+			java.io.File myFilePath = new java.io.File(filePath);
+			myFilePath.delete(); //删除空文件夹
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+	}
+
+	//删除指定文件夹下所有文件
+	//param path 文件夹完整绝对路径
+	public static boolean delAllFile(String path) {
+		boolean flag = false;
+		File file = new File(path);
+		if (!file.exists()) {
+			return flag;
+		}
+		if (!file.isDirectory()) {
+			return flag;
+		}
+		String[] tempList = file.list();
+		File temp = null;
+		for (int i = 0; i < tempList.length; i++) {
+			if (path.endsWith(File.separator)) {
+				temp = new File(path + tempList[i]);
+			} 
+			else {
+				temp = new File(path + File.separator + tempList[i]);
+			}
+			if (temp.isFile()) {
+				temp.delete();
+			}
+			if (temp.isDirectory()) {
+				delAllFile(path + "/" + tempList[i]);//先删除文件夹里面的文件
+				delFolder(path + "/" + tempList[i]);//再删除空文件夹
+				flag = true;
+			}
+		}
+		return flag;
 	}
 }
