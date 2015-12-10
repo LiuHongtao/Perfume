@@ -3,7 +3,10 @@ package perfume.util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,22 +31,15 @@ public class LogUtil {
 		}
 	}
 	
-	static private File logFile = new File("D://log.txt");
+	static private File logFile = new File("E://log.md");
 	
-	public static void printToLog(String msg) {
-		try {
-			FileOutputStream fs;
-			fs = new FileOutputStream(logFile);
-			PrintStream p = new PrintStream(fs);
-			
-			p.println(msg);
-			p.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public static void printToLog(String msg) throws IOException {
+		Writer txtWriter = new FileWriter(logFile, true);
+		txtWriter.write(msg);
+		txtWriter.flush();
 	}
 	
-	public static void printToLog(int msg) {
+	public static void printToLog(int msg) throws IOException {
 		printToLog(msg + "");
 	}
 }

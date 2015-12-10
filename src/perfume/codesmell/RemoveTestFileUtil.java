@@ -1,5 +1,6 @@
 package perfume.codesmell;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import perfume.util.FileUtil;
@@ -9,15 +10,20 @@ public class RemoveTestFileUtil {
 	public void removeAllTestFile(String dirName) {
 		ArrayList<String> projectNameList = FileUtil.getAllProjectName(dirName);
 		for (String projectName: projectNameList) {
-			LogUtil.print("#####" + projectName);
-			ArrayList<String> paths = FileUtil.getAllTestJavaFilePath(dirName + projectName);
+			try {
+				LogUtil.printToLog("#####" + projectName + "\r\n\r\n");
 			
-			for (String filePath: paths) {
-				LogUtil.print(filePath);
-//				FileUtil.delFolder(filePath);
+				ArrayList<String> paths = FileUtil.getAllTestJavaFilePath(dirName + projectName);
+				
+				for (String filePath: paths) {
+					LogUtil.printToLog(filePath + "\r\n\r\n");
+	//				FileUtil.delFolder(filePath);
+				}
+				
+				LogUtil.printToLog(paths.size() + "\r\n\r\n");
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			
-			LogUtil.print(paths.size());
 		}
 	}
 }
