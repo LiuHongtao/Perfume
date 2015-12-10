@@ -13,15 +13,6 @@ public class FileUtil {
 	public static ArrayList<String> getAllTestJavaFilePath(String dirName) {
 		filePathList = new ArrayList<String>();
 		getTestDirPath(dirName);
-		
-		for (String path: filePathList) {
-			LogUtil.print(path);
-		}
-		
-		LogUtil.print(
-				String.format(
-						FILES_COUNT, filePathList.size()));
-		
 		return filePathList;
 	}
 	
