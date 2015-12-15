@@ -19,10 +19,10 @@ public class LongMethod extends AbstractCodeSmell{
 				projectDir + projectName, 
 				measurement_1, measurement_2, measurement_3);
 		
-		CSVUtil.outputToCSV(
-				RESULT_DIR + getCodeSmellName() + "\\", 
-				projectName, 
-				measurement_1, measurement_2, measurement_3);
+//		CSVUtil.outputToCSV(
+//				RESULT_DIR + getCodeSmellName() + "\\", 
+//				projectName, 
+//				measurement_1, measurement_2, measurement_3);
 	}
 	
 	@Override

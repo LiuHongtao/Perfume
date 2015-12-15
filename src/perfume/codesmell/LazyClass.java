@@ -3,17 +3,19 @@ package perfume.codesmell;
 import perfume.metric.AbstractMetricVisitor;
 import perfume.metric.CBOMetric;
 import perfume.metric.CYCLOMetric;
-import perfume.metric.LOCMetric;
 import perfume.metric.LOC_CLASSMetric;
 import perfume.metric.MetricUtil;
 import perfume.metric.NOAMetric;
 import perfume.metric.NOMMetric;
 import perfume.util.CSVUtil;
+import visitor.LazyClassDetector;
 
 public class LazyClass extends AbstractCodeSmell {
 
 	@Override
 	public void makeTrainingSet(String projectDir, String projectName) {
+		LazyClassDetector detector = new LazyClassDetector(projectDir + projectName);
+		
 		AbstractMetricVisitor measurement_1 = new NOMMetric();
 		AbstractMetricVisitor measurement_2 = new CYCLOMetric();
 		AbstractMetricVisitor measurement_3 = new LOC_CLASSMetric();
@@ -27,7 +29,7 @@ public class LazyClass extends AbstractCodeSmell {
 		
 		CSVUtil.outputToCSV(
 				RESULT_DIR + getCodeSmellName() + "\\", 
-				projectName, 
+				projectName, detector.getIsLazyClassMap(),
 				measurement_1, measurement_2, measurement_3, 
 				measurement_4, measurement_5);
 	}

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -12,7 +13,11 @@ import perfume.metric.AbstractMetric;
 
 public class CSVUtil {
 	
-	public static void outputToCSV(String dirName, String fileName, AbstractMetric... metrics) {
+	public static void outputToCSV(
+			String dirName, 
+			String fileName, 
+			HashMap<String, Boolean> result, 
+			AbstractMetric... metrics) {
 		LogUtil.print("output to CSV start");
 		
 		int times = metrics.length;
@@ -55,6 +60,8 @@ public class CSVUtil {
 					p.print(',');
 					p.print(metrics[i].getMetricResult().get(key));
 				}
+				p.print(',');
+				p.print(result.containsKey(key));
 				
 				p.print('\n');
 			}	

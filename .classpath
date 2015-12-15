@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.text_3.5.300.v20130515-1451.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.10-FINAL-20140208.jar"/>
 	<classpathentry kind="lib" path="lib/text.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LazyClass"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
