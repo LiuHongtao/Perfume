@@ -61,12 +61,12 @@ public class FileUtil {
     	
     	for (File file: fileList) {
     		String path = file.getAbsolutePath();
-    		if (path.endsWith(".java")) {
-    			filePathList.add(file.getAbsolutePath());
-            }
-    		else if (file.isDirectory()){
+    		if (file.isDirectory()){
     			getJavaFile(path);
     		}
+    		else if (path.endsWith(".java")) {
+    			filePathList.add(file.getAbsolutePath());
+            }
     	}
     }
     
