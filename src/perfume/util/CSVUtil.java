@@ -1,8 +1,12 @@
 package perfume.util;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -74,5 +78,38 @@ public class CSVUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}				
+	}
+	
+	public static void collectToCSV(String dirPath, String filePath) throws IOException {
+		File result = new File(filePath);
+		FileWriter fw;
+		BufferedWriter bw;
+		fw = new FileWriter(result);
+		bw = new BufferedWriter(fw);
+        
+        File dir = new File(dirPath);
+		File[] fileList = dir.listFiles();
+		String myreadline;
+		for (File file: fileList) {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr); 
+	        while (br.ready()) {
+	            // 读取一行
+	            myreadline = br.readLine();
+	            if (myreadline.startsWith("KEY,")) {
+	            	continue;
+	            }
+	            // 写入文件
+	            bw.write(myreadline); 
+	            bw.newLine();
+	        }
+	        
+	        br.close();
+	        fr.close();
+		}
+		
+		bw.flush(); 
+        bw.close();
+        fw.close();
 	}
 }
