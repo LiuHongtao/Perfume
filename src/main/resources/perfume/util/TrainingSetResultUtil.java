@@ -15,14 +15,14 @@ import java.util.Map;
 
 import main.resources.perfume.metric.AbstractMetric;
 
-public class CSVUtil {
+public class TrainingSetResultUtil {
 	
 	public static void outputToCSV(
 			String dirName, 
 			String fileName, 
 			HashMap<String, Boolean> result, 
 			AbstractMetric... metrics) {
-		LogUtil.print("output to CSV start");
+		LogUtil.print("output to result start");
 		
 		int times = metrics.length;
 		if (times < 2) {
@@ -35,7 +35,7 @@ public class CSVUtil {
 			dir.mkdirs();
 		}
 		
-		fileName = dirName + fileName + ".csv";
+		fileName = dirName + fileName + ".tsv";
 		File file = new File(fileName);		
 		
 		try {
@@ -43,35 +43,42 @@ public class CSVUtil {
 			fs = new FileOutputStream(file);
 			PrintStream p = new PrintStream(fs);
 			
-			p.print("KEY");
 			for (int i = 0; i < times; i++) {
-				p.print(',');
 				p.print(metrics[i].getMetricName());
+				p.print('\t');
 			}
-			p.print('\n');
+			p.print("test result");
+			p.print("\r\n");
 			
 			Iterator iter = metrics[0].getMetricResult().entrySet().iterator();
+			StringBuilder lineBuilder;
 			while (iter.hasNext()) {
+				lineBuilder = new StringBuilder();
+				
 				Map.Entry entry = (Map.Entry) iter.next();
 				Object key = entry.getKey();
 				Object val = entry.getValue();
 				
-				p.print(key);
-				p.print(',');
-				p.print(val);
+				lineBuilder.append(val);
 				
 				for (int i = 1; i < times; i++) {
-					p.print(',');
-					p.print(metrics[i].getMetricResult().get(key));
+					lineBuilder.append('\t');
+					lineBuilder.append(metrics[i].getMetricResult().get(key));
 				}
-				p.print(',');
-				p.print(result.containsKey(key));
 				
-				p.print('\n');
+				if (lineBuilder.toString().equals("-2\t-2\t-2\t-2\t-2")) {
+					continue;
+				}
+				
+				lineBuilder.append('\t');
+				lineBuilder.append(result.containsKey(key));
+				lineBuilder.append("\r\n");
+				
+				p.print(lineBuilder.toString());
 			}	
 			p.close();
 			
-			LogUtil.print("output to CSV finish");
+			LogUtil.print("output to result finish");
 			LogUtil.print("see file " + fileName);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -86,7 +93,7 @@ public class CSVUtil {
 		BufferedWriter bw;
 		fw = new FileWriter(result);
 		bw = new BufferedWriter(fw);
-        
+		
         File dir = new File(dirPath);
 		File[] fileList = dir.listFiles();
 		String myreadline;
@@ -95,7 +102,7 @@ public class CSVUtil {
 			BufferedReader br = new BufferedReader(fr); 
 	        while (br.ready()) {
 	            myreadline = br.readLine();
-	            if (myreadline.startsWith("KEY,")) {
+	            if (myreadline.startsWith("NOM")) {
 	            	continue;
 	            }
 	            bw.write(myreadline); 

@@ -7,7 +7,7 @@ import main.resources.perfume.metric.LOC_CLASSMetric;
 import main.resources.perfume.metric.MetricUtil;
 import main.resources.perfume.metric.NOAMetric;
 import main.resources.perfume.metric.NOMMetric;
-import main.resources.perfume.util.CSVUtil;
+import main.resources.perfume.util.TrainingSetResultUtil;
 import visitor.LazyClassDetector;
 
 public class LazyClass extends AbstractCodeSmell {
@@ -27,7 +27,7 @@ public class LazyClass extends AbstractCodeSmell {
 				measurement_1, measurement_2, measurement_3,
 				measurement_4, measurement_5);
 		
-		CSVUtil.outputToCSV(
+		TrainingSetResultUtil.outputToCSV(
 				RESULT_DIR + getCodeSmellName() + "\\", 
 				projectName, detector.getIsLazyClassMap(),
 				measurement_1, measurement_2, measurement_3, 

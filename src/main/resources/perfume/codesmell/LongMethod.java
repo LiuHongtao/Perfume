@@ -5,7 +5,7 @@ import main.resources.perfume.metric.CYCLOMethodMetric;
 import main.resources.perfume.metric.LOC_METHODMetric;
 import main.resources.perfume.metric.MAXNESTINGMetric;
 import main.resources.perfume.metric.MetricUtil;
-import main.resources.perfume.util.CSVUtil;
+import main.resources.perfume.util.TrainingSetResultUtil;
 
 public class LongMethod extends AbstractCodeSmell{
 
