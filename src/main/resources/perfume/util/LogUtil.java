@@ -31,7 +31,22 @@ public class LogUtil {
 		}
 	}
 	
-	static private File logFile = new File("E://log.md");
+	public static void print(Map msg) {
+		Iterator iter = msg.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter.next();
+			Object key = entry.getKey();
+			Object val = entry.getValue();
+			try {
+				printToLog(key + "\t" + val+ "\n" );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	static private File logFile = new File("E://log2.md");
 	
 	public static void printToLog(String msg) throws IOException {
 		Writer txtWriter = new FileWriter(logFile, true);

@@ -12,29 +12,31 @@ public class MetricUtil {
 
 	/**
 	 * Only for AST
+	 * 
 	 * @param projectPath
 	 * @param measurements
 	 */
 	public static void startMetric(String projectPath, AbstractMetric... metrics) {
 		LogUtil.print("measurement start");
-		
-		ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
+		try {
+			ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
 
-		for (String path: filePath) {
-			LogUtil.print(path);
-			try {
+			for (String path : filePath) {
+				LogUtil.print(path);
+
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
-				for (AbstractMetric metric: metrics) {					
+				for (AbstractMetric metric : metrics) {
 					metric.beforeMetric(path, compUnit);
 					compUnit.accept(metric);
 					metric.afterMetric();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 		LogUtil.print("measurement finish");
 	}
-	
+
 }
