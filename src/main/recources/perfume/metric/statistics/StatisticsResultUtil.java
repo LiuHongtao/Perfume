@@ -17,17 +17,19 @@ public class StatisticsResultUtil {
 			Map.Entry entry = (Map.Entry) iter.next();
 			Object key = entry.getKey();
 			Object val = entry.getValue();
-			msgStr += key + "\t" + val + "\n";
-			
+			msgStr += key + "," + val + "\n";
+
 		}
 		return msgStr;
 	}
 
-	public static void printToLog(Map msg) throws IOException {
+	public static void printToLog(Map msg, String metricName) throws IOException {
+		logFile = new File("E://result//" + metricName + ".csv");
 		Writer txtWriter = new FileWriter(logFile, true);
 
 		txtWriter.write(MapToStr(msg));
 		txtWriter.flush();
+		txtWriter.close();
 	}
 
 }

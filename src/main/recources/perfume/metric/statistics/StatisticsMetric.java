@@ -1,11 +1,13 @@
 package main.recources.perfume.metric.statistics;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import main.resources.perfume.metric.AbstractMetric;
 import main.resources.perfume.metric.AbstractMetricVisitor;
@@ -19,32 +21,32 @@ import main.resources.perfume.util.FileUtil;
 import main.resources.perfume.util.LogUtil;
 
 public class StatisticsMetric {
-	private Map<Long, Integer> resultMap = new LinkedHashMap<Long, Integer>();
+	private Map<String, AtomicInteger> resultMap = new LinkedHashMap<String, AtomicInteger>();
 
-	public void makeStatisticsSet(String projectDir, String projectName) {
+	public void makeStatisticsSet(String projectDir, String projectName, AbstractMetricVisitor measurement) {
 
-		AbstractMetricVisitor measurement_1 = new NOMMetric();
+		MetricUtil.startMetric(projectDir + projectName, measurement);
 
-		MetricUtil.startMetric(projectDir + projectName, measurement_1);
+		HashMap<String, Long> mResult = measurement.getMetricResult();
 
-		HashMap<String, Long> mResult = measurement_1.getMetricResult();
-		
 		Iterator<Entry<String, Long>> iter = mResult.entrySet().iterator();
 		while (iter.hasNext()) {
 			Map.Entry entry = (Map.Entry) iter.next();
 			Long key = (Long) entry.getValue();
-			
-			if (resultMap.get(key) == null) {
-				resultMap.put(key,0);
+			String index = key.intValue() + "";
+
+			if (resultMap.get(index) == null) {
+				resultMap.put(index, new AtomicInteger());
 			}
-			int tmp = resultMap.get(key).intValue();
-			resultMap.put(key, tmp+1);
+			resultMap.get(index).incrementAndGet();
+
 		}
 		
-		
+
 	}
-	public void getResult(){
-		LogUtil.print(resultMap);
+
+	public void getResult(String metricName) throws IOException {
+		StatisticsResultUtil.printToLog(resultMap, metricName);
 	}
 
 }
