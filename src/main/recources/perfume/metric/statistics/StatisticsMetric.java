@@ -1,7 +1,9 @@
 package main.recources.perfume.metric.statistics;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -24,7 +26,7 @@ public class StatisticsMetric {
 	private Map<String, AtomicInteger> resultMap = new LinkedHashMap<String, AtomicInteger>();
 
 	public void makeStatisticsSet(String projectDir, String projectName, AbstractMetricVisitor measurement) {
-
+		long timeMillis = System.currentTimeMillis();
 		MetricUtil.startMetric(projectDir + projectName, measurement);
 
 		HashMap<String, Long> mResult = measurement.getMetricResult();
@@ -41,7 +43,11 @@ public class StatisticsMetric {
 			resultMap.get(index).incrementAndGet();
 
 		}
-		
+		timeMillis = System.currentTimeMillis() -timeMillis;
+		Date nowTime = new Date(timeMillis);
+		SimpleDateFormat sdFormatter = new SimpleDateFormat("mm:ss");
+		String retStrFormatNowDate = sdFormatter.format(nowTime);
+		LogUtil.print(retStrFormatNowDate+"\n");
 
 	}
 

@@ -8,6 +8,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import main.resources.perfume.metric.model.MethodParam;
 import main.resources.perfume.metric.visitor.CYCLOVisitor;
+import main.resources.perfume.util.LogUtil;
 
 /**
  * <ul>
@@ -60,6 +61,9 @@ public class CYCLOMetric extends AbstractMetricVisitor {
 			
 		}
 		CYCLOMetric.put(getPkgClassName(), totalCYCLO);
+//		if(totalCYCLO==0){
+//			LogUtil.print(getPkgClassName());
+//		}
 		return true;
 	}
 

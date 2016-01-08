@@ -17,12 +17,12 @@ public class MetricUtil {
 	 * @param measurements
 	 */
 	public static void startMetric(String projectPath, AbstractMetric... metrics) {
-		LogUtil.print("measurement start");
+		LogUtil.print("measurement start"+"\n"+projectPath);
 		try {
 			ArrayList<String> filePath = FileUtil.getAllJavaFilePath(projectPath);
 
 			for (String path : filePath) {
-				LogUtil.print(path);
+				//LogUtil.print(path);
 
 				CompilationUnit compUnit = JdtAstUtil.getCompilationUnit(path);
 				for (AbstractMetric metric : metrics) {
